@@ -18,24 +18,27 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:hint="Here are some bible verses"
-        tools:layout_editor_absoluteX="0dp"
+        android:text="BibleVerse"
+        tools:layout_editor_absoluteX="-6dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <EditText
         android:id="@+id/etQuoteoftheday"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
+        android:text="Quotes"
         android:hint="Here are some quotes"
-        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="50dp" />
 
     <EditText
         android:id="@+id/etMealPlan"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="218dp"
+        android:layout_height="153dp"
+        android:layout_marginTop="4dp"
         android:hint="Here are some MealPlans"
+        android:text="Meal Plan"
         app:layout_constraintTop_toBottomOf="@+id/etBibleVerse"
-        tools:layout_editor_absoluteX="11dp" />
+        tools:layout_editor_absoluteX="-5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
