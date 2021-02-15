@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lifestyle Application</string>
+    <string name="life_style_app">Life Style App</string>
+    <string name="todo">TODO</string>
 </resources>
