@@ -2,4 +2,12 @@
     <string name="app_name">Lifestyle Application</string>
     <string name="life_style_app">Life Style App</string>
     <string name="todo">TODO</string>
+    <string name="logo">logo</string>
+    <string name="hello_there_welcome_back">Hello there, Welcome Back</string>
+    <string name="sign_in_to_continue">Sign In to continue</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="new_user_sign_up">New user? Sign Up</string>
 </resources>
