@@ -14,42 +14,28 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="-38dp" />
 
-    <EditText
-        android:id="@+id/etBibleVerse"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:hint="Here are some bible verses"
-        android:text="BibleVerse"
-        tools:layout_editor_absoluteX="1dp"
+    <Button
+        android:id="@+id/Button"
+        android:layout_width="212dp"
+        android:layout_height="51dp"
+        android:text="Bibleverse"
+        tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="198dp" />
-
-    <EditText
-        android:id="@+id/etQuoteoftheday"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginEnd="224dp"
-        android:layout_marginRight="224dp"
-        android:hint="Here are some quotes"
-        android:text="Quotes"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="402dp" />
-
-    <EditText
-        android:id="@+id/etMealPlan"
-        android:layout_width="218dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="4dp"
-        android:hint="Here are some MealPlans"
-        android:text="Meal Plan"
-        app:layout_constraintTop_toBottomOf="@+id/etBibleVerse"
-        tools:layout_editor_absoluteX="1dp" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="148dp"
-        android:layout_height="35dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="693dp" />
+        android:layout_width="163dp"
+        android:layout_height="60dp"
+        android:text="Meal Plan"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="269dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="183dp"
+        android:layout_height="72dp"
+        android:text="Quote"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="353dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
