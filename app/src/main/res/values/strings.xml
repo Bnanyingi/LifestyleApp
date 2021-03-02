@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Lifestyle Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="life_style_app">Life Style App</string>
+    <string name="todo">TODO</string>
+    <string name="logo">logo</string>
+    <string name="hello_there_welcome_back">Hello there, Welcome Back</string>
+    <string name="sign_in_to_continue">Sign In to continue</string>
+    <string name="register_to_continue">Register to continue</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="new_user_sign_up">New user? Sign Up</string>
+    <string name="close_drawer">Close_Drawer</string>
+    <string name="open_drawer">Open_Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home">Home</string>
+    <string name="meal">MealPlan</string>
+    <string name="workout">WorkOutPlan</string>
+    <string name="devotions">Devotionals</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="have_an_account_login">Have an account? Login</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "877818847585",
+    "project_id": "lifestyle-application-da-e06ec",
+    "storage_bucket": "lifestyle-application-da-e06ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877818847585:android:34abafd6474c56baf2a520",
+        "android_client_info": {
+          "package_name": "com.example.lifestyleapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877818847585-g70ipfgqmb0ma651kj83f53e9p97eig2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lifestyleapplication",
+            "certificate_hash": "ef63872c7cda975a06dc2a023e319fde86898bb7"
+          }
+        },
+        {
+          "client_id": "877818847585-m30qnt6ljt1f45h7hhma33h9opprnttt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkKiX9eLCehH4RLPtceSlkGB9SnXCHBUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877818847585-m30qnt6ljt1f45h7hhma33h9opprnttt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

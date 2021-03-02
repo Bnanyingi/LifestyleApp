@@ -4,38 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvLifestyleApp"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/splashlogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-38dp" />
+        android:contentDescription="@string/todo" />
 
-    <Button
-        android:id="@+id/Button"
-        android:layout_width="212dp"
-        android:layout_height="51dp"
-        android:text="Bibleverse"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="198dp" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/rubikbold"
+        android:gravity="center_horizontal"
+        android:text="@string/life_style_app"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="163dp"
-        android:layout_height="60dp"
-        android:text="Meal Plan"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="269dp" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="183dp"
-        android:layout_height="72dp"
-        android:text="Quote"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="353dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
