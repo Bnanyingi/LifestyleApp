@@ -18,24 +18,33 @@
         android:id="@+id/Button"
         android:layout_width="212dp"
         android:layout_height="51dp"
-        android:text="Bibleverse"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="198dp" />
+        android:layout_marginTop="116dp"
+        android:text="@string/txt_bible_verse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvLifestyleApp"
+        android:onClick="onClickBibleVerse"/>
 
     <Button
         android:id="@+id/button"
         android:layout_width="163dp"
         android:layout_height="60dp"
-        android:text="Meal Plan"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="269dp" />
+        android:layout_marginTop="64dp"
+        android:text="@string/txt_meal_plan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Button"
+        android:onClick="onClickMeanPlan"/>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="183dp"
         android:layout_height="72dp"
-        android:text="Quote"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="353dp" />
+        android:layout_marginTop="124dp"
+        android:text="@string/txt_quote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        android:onClick="onClickQuote"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
