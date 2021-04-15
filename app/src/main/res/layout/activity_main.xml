@@ -6,45 +6,173 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvLifestyleApp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-38dp" />
-
     <Button
         android:id="@+id/Button"
-        android:layout_width="212dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="116dp"
-        android:text="@string/txt_bible_verse"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvLifestyleApp"
-        android:onClick="onClickBibleVerse"/>
+        android:layout_width="163dp"
+        android:layout_height="52dp"
+        android:onClick="onClickBibleVerse"
+        android:text="Meal Plan"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#F6EFEF"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="163dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/txt_meal_plan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button"
-        android:onClick="onClickMeanPlan"/>
+        android:layout_height="52dp"
+        android:onClick="onClickMeanPlan"
+        android:text="Daily Bible Verse"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#F6EFEF"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="69dp" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="183dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="124dp"
-        android:text="@string/txt_quote"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        android:onClick="onClickQuote"/>
+        android:layout_width="163dp"
+        android:layout_height="52dp"
+        android:onClick="onClickQuote"
+        android:text="Devotionals"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#F6EFEF"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.6"
+        tools:layout_editor_absoluteX="221dp" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="202dp"
+        android:layout_height="157dp"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="202dp"
+        android:layout_height="167dp"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <view
+        android:id="@+id/view3"
+        class="androidx.appcompat.widget.ActionMenuView"
+        android:layout_width="200dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="8dp"
+        android:background="#0E4911"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <view
+        android:id="@+id/view4"
+        class="androidx.appcompat.widget.ActionMenuView"
+        android:layout_width="200dp"
+        android:layout_height="188dp"
+        android:background="#6BAE1B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="163dp"
+        android:layout_height="52dp"
+        android:text="Natural Remedies"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#F6EFEF"
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.455"
+        tools:layout_editor_absoluteX="221dp" />
+
+    <view
+        android:id="@+id/view5"
+        class="androidx.appcompat.widget.ActionMenuView"
+        android:layout_width="200dp"
+        android:layout_height="188dp"
+        android:background="#A638B8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <view
+        android:id="@+id/view6"
+        class="androidx.appcompat.widget.ActionMenuView"
+        android:layout_width="200dp"
+        android:layout_height="188dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        android:background="#A638B8"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="163dp"
+        android:layout_height="52dp"
+        android:text="Workout Plan"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#F6EFEF"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        app:layout_constraintVertical_bias="0.514" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="163dp"
+        android:layout_height="52dp"
+        android:text="Poems"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#F6EFEF"
+        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toEndOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+    <view
+        android:id="@+id/view7"
+        class="androidx.appcompat.widget.ActionMenuView"
+        android:layout_width="200dp"
+        android:layout_height="188dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+    <view
+        android:id="@+id/view8"
+        class="androidx.appcompat.widget.ActionMenuView"
+        android:layout_width="200dp"
+        android:layout_height="188dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="163dp"
+        android:layout_height="52dp"
+        android:text="Daily Quotes"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#F6EFEF"
+        app:layout_constraintBottom_toBottomOf="@+id/view7"
+        app:layout_constraintEnd_toEndOf="@+id/view7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="163dp"
+        android:layout_height="52dp"
+        android:text="Book Club"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#F6EFEF"
+        app:layout_constraintBottom_toBottomOf="@+id/view8"
+        app:layout_constraintEnd_toEndOf="@+id/view8"
+        app:layout_constraintHorizontal_bias="0.617"
+        app:layout_constraintStart_toEndOf="@+id/view7"
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        app:layout_constraintVertical_bias="0.492" />
 </androidx.constraintlayout.widget.ConstraintLayout>
