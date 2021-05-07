@@ -3,4 +3,9 @@
     <string name="txt_bible_verse">Bible verse</string>
     <string name="txt_meal_plan">Meal plan</string>
     <string name="txt_quote">Quote</string>
+    <string name="welcome_text">Welcome to LifeStyle App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_account">Have no account? <u>Please sign up</u></string>
+    <string name="have_account" >Have account? <u>Sign in</u></string>
 </resources>
