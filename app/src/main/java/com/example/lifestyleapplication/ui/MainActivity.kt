@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.lifestyleapplication.R
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,11 +17,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.navHostFragment)
-        setupActionBarWithNavController(navController)
-    }
+//        setupActionBarWithNavController(navController)
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.navHostFragment)
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        if (navController.currentDestination?.label.toString().contains("Login")) {
+            val user = FirebaseAuth.getInstance().currentUser
+            if (user != null) {
+                navController.navigate(R.id.action_loginFragment_to_homeFragment2)
+            }
+        }
     }
 }
