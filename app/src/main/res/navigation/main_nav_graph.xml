@@ -48,5 +48,27 @@
         android:id="@+id/dailyVersesFragment"
         android:name="com.example.lifestyleapplication.ui.home.DailyVersesFragment"
         android:label="fragment_daily_verses"
-        tools:layout="@layout/fragment_daily_verses" />
+        tools:layout="@layout/fragment_daily_verses" >
+        <action
+            android:id="@+id/action_dailyVersesFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_dailyVersesFragment_to_verseFragment"
+            app:destination="@id/verseFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/verseFragment"
+        android:name="com.example.lifestyleapplication.ui.home.VerseFragment"
+        android:label="fragment_verse"
+        tools:layout="@layout/fragment_verse" >
+        <action
+            android:id="@+id/action_verseFragment_to_dailyVersesFragment"
+            app:destination="@id/dailyVersesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
 </navigation>
