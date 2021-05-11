@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/purple_700"
-    tools:context=".ui.home.PoemsFragment">
+    tools:context=".ui.home.QuotesFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +17,7 @@
             android:layout_height="?attr/actionBarSize"
             >
             <ImageView
-                android:id="@+id/backAuthor"
+                android:id="@+id/backQuote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"
@@ -28,11 +29,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
+            <ProgressBar
+                android:id="@+id/progressQuotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
             <LinearLayout
-                android:id="@+id/layoutPoems"
+                android:id="@+id/layoutQuote"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -41,7 +52,7 @@
                     android:padding="30dp"
                     >
                     <TextView
-                        android:id="@+id/userNameAuthor"
+                        android:id="@+id/userNameQuote"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hello Lumbert"
@@ -49,35 +60,57 @@
                         android:textSize="20sp"
                         />
                     <TextView
-                        android:id="@+id/chooseText"
+                        android:id="@+id/txtIntroQuote"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Choose your favourite author"
+                        android:text="This is your Quote of the day"
                         android:textColor="@color/white"
-                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textSize="40sp"
+                        android:maxLines="3"
                         android:layout_marginTop="5dp"
                         />
+
                 </LinearLayout>
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
                     >
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerAuthor"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:listitem="@layout/author_item"
+                    <ImageView
+                        android:id="@+id/imgQ"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_baseline_format_quote_24"
+                        app:tint="@color/white"
                         />
-                </RelativeLayout>
+                    <TextView
+                        android:id="@+id/quote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/lato_black"
+                        android:textSize="20sp"
+                        android:layout_marginTop="3dp"
+                        android:padding="10dp"
+
+                        />
+
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:padding="20dp"
+                    />
 
             </LinearLayout>
-            <ProgressBar
-                android:id="@+id/progressPoems"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                />
         </RelativeLayout>
 
     </LinearLayout>

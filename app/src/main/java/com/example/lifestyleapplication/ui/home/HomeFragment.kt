@@ -44,12 +44,14 @@ class HomeFragment : Fragment() {
 
         }
         binding.dailyQuotes.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_quotesFragment)
 
         }
         binding.naturalRemedies.setOnClickListener {
 
         }
         binding.poems.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_poemsFragment)
 
         }
         binding.workOutPLan.setOnClickListener {
@@ -57,5 +59,4 @@ class HomeFragment : Fragment() {
         }
         return binding.root
     }
-
 }

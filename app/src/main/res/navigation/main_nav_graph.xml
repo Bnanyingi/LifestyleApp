@@ -29,6 +29,19 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popUpTo="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_poemsFragment"
+            app:destination="@id/poemsFragment"
+            app:popUpTo="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_quotesFragment"
+            app:destination="@id/quotesFragment"
+            app:popUpTo="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -43,6 +56,11 @@
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/dailyVersesFragment"
@@ -68,6 +86,44 @@
         <action
             android:id="@+id/action_verseFragment_to_dailyVersesFragment"
             app:destination="@id/dailyVersesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/poemsFragment"
+        android:name="com.example.lifestyleapplication.ui.home.PoemsFragment"
+        android:label="fragment_poems"
+        tools:layout="@layout/fragment_poems" >
+        <action
+            android:id="@+id/action_poemsFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/quotesFragment"
+        android:name="com.example.lifestyleapplication.ui.home.QuotesFragment"
+        android:label="fragment_quotes"
+        tools:layout="@layout/fragment_quotes" >
+        <action
+            android:id="@+id/action_quotesFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.lifestyleapplication.ui.auth.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_profileFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
     </fragment>

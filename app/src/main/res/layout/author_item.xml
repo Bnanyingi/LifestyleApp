@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/authorRel"
+    android:background="@color/purple_700"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/authorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="William Shakespear"
+        android:textColor="@android:color/white"
+        android:paddingTop="15dp"
+        android:paddingBottom="25dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="data_types">
+        <item>Non-Vegan</item>
+        <item>Full Vegan</item>
+        <item>Lacto-Vegetarian</item>
+        <item>Ovo-Vegetarian</item>
+        <item>Lacto-Ovo Vegetarian</item>
+        <item>Pescatarian</item>
+    </string-array>
+    <string-array name="meals">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Dessert</item>
+    </string-array>
+</resources>

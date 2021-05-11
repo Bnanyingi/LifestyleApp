@@ -57,7 +57,7 @@ class SignUpFragment : Fragment() {
                 .addOnCompleteListener(requireActivity(), OnCompleteListener {
                     if (it.isSuccessful) {
                         Toast.makeText(context, "Successfully Registered", Toast.LENGTH_LONG).show()
-                        findNavController().navigate(R.id.action_signUpFragment_to_homeFragment2)
+                        findNavController().navigate(R.id.action_signUpFragment_to_profileFragment)
                     }else{
                         Toast.makeText(context, "Registration failed!", Toast.LENGTH_LONG).show()
                     }

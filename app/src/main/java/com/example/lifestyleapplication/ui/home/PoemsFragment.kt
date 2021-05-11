@@ -1,33 +1,35 @@
 package com.example.lifestyleapplication.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lifestyleapplication.R
+import com.example.lifestyleapplication.databinding.FragmentPoemsBinding
+import com.example.lifestyleapplication.ui.adapters.authorAdapter
+import com.example.lifestyleapplication.ui.interfaces.authorInterface
+import com.example.lifestyleapplication.ui.models.author
+import com.example.lifestyleapplication.ui.retrofit.authorRetrofit
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PoemsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PoemsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentPoemsBinding
+    private lateinit var authorAdapter: authorAdapter
+    private lateinit var author: authorInterface
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -35,26 +37,44 @@ class PoemsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_poems, container, false)
-    }
+        binding = FragmentPoemsBinding.inflate(inflater, container, false)
+        val animation: Animation = AnimationUtils.loadAnimation(activity, android.R.anim.slide_out_right)
+        val activity = activity as Context
+        authorAdapter = authorAdapter(activity)
+        linearLayoutManager = LinearLayoutManager(activity)
+        binding.recyclerAuthor.adapter = authorAdapter
+        binding.recyclerAuthor.layoutManager = linearLayoutManager
+        binding.backAuthor.setOnClickListener {
+            findNavController().navigate(R.id.action_poemsFragment_to_homeFragment2)
+        }
+        binding.userNameAuthor.startAnimation(animation)
+        binding.chooseText.startAnimation(animation)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PoemsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PoemsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        binding.progressPoems.visibility = View.VISIBLE
+        binding.layoutPoems.visibility = View.GONE
+        author = authorRetrofit.getRetrofit().create(authorInterface::class.java)
+        val authorCall: Call<author> = author.getAuthors()
+        authorCall.enqueue(object: Callback<author>{
+            override fun onResponse(call: Call<author>, response: Response<author>) {
+                if (response.isSuccessful){
+                    binding.progressPoems.visibility = View.GONE
+                    binding.layoutPoems.visibility = View.VISIBLE
+                    sendData(response.body())
                 }
             }
+
+            override fun onFailure(call: Call<author>, t: Throwable) {
+                Toast.makeText(activity, "Error", Toast.LENGTH_LONG).show()
+                binding.progressPoems.visibility = View.VISIBLE
+                binding.layoutPoems.visibility = View.GONE
+            }
+
+        })
+        return binding.root
     }
+
+    private fun sendData(body: author?) {
+        authorAdapter.getData(body!!.author)
+    }
+
 }
