@@ -99,6 +99,10 @@
             app:destination="@id/homeFragment2"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_poemsFragment_to_poemsTitlesFragment"
+            app:destination="@id/poemsTitlesFragment"
+            app:popUpTo="@id/poemsFragment" />
     </fragment>
     <fragment
         android:id="@+id/quotesFragment"
@@ -124,6 +128,49 @@
         <action
             android:id="@+id/action_profileFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/poemsTitlesFragment"
+        android:name="com.example.lifestyleapplication.ui.home.PoemsTitlesFragment"
+        android:label="fragment_poems_titles"
+        tools:layout="@layout/fragment_poems_titles" >
+        <action
+            android:id="@+id/action_poemsTitlesFragment_to_poemsFragment"
+            app:destination="@id/poemsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_poemsTitlesFragment_to_selectedTitleFragment"
+            app:destination="@id/selectedTitleFragment"
+            app:popUpTo="@id/poemsTitlesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedTitleFragment"
+        android:name="com.example.lifestyleapplication.ui.home.SelectedTitleFragment"
+        android:label="fragment_selected_title"
+        tools:layout="@layout/fragment_selected_title" >
+        <action
+            android:id="@+id/action_selectedTitleFragment_to_poemsTitlesFragment"
+            app:destination="@id/poemsTitlesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_selectedTitleFragment_to_viewPoemFragment"
+            app:destination="@id/viewPoemFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/selectedTitleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPoemFragment"
+        android:name="com.example.lifestyleapplication.ui.home.ViewPoemFragment"
+        android:label="fragment_view_poem"
+        tools:layout="@layout/fragment_view_poem" >
+        <action
+            android:id="@+id/action_viewPoemFragment_to_selectedTitleFragment"
+            app:destination="@id/selectedTitleFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
     </fragment>

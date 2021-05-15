@@ -8,9 +8,11 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lifestyleapplication.R
+import com.example.lifestyleapplication.ui.interfaces.generalinterface
 
 open class authorAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     private var authors: ArrayList<String> = ArrayList()
+    private lateinit var general: generalinterface
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
@@ -22,8 +24,13 @@ open class authorAdapter(val context: Context): RecyclerView.Adapter<RecyclerVie
         val myViewHolder: MyViewHolder = holder as MyViewHolder
         myViewHolder.txt.text = authors[position]
         myViewHolder.rel.setOnClickListener {
-
+            general.sendAuthor(authors[position])
         }
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        general = context as generalinterface
     }
 
     override fun getItemCount(): Int {

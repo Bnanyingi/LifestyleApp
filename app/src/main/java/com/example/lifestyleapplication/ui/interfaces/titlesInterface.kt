@@ -9,5 +9,5 @@ interface titlesInterface {
     @GET("author/{author}/title")
     fun getTitles(
         @Path("author") author: String
-    ): Call<titles>
+    ): Call<List<titles>>
 }
