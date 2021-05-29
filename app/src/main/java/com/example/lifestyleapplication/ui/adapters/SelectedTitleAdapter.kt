@@ -43,6 +43,8 @@ open class SelectedTitleAdapter(val context: Context): RecyclerView.Adapter<Recy
     fun addAll(arr: List<poem>){
         for (i in arr){
             list.add(i)
+            notifyDataSetChanged()
         }
+        notifyDataSetChanged()
     }
 }

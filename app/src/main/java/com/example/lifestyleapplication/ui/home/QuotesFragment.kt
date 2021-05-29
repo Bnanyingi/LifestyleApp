@@ -15,6 +15,8 @@ import com.example.lifestyleapplication.databinding.FragmentQuotesBinding
 import com.example.lifestyleapplication.ui.interfaces.quotesInterface
 import com.example.lifestyleapplication.ui.models.allQuotes
 import com.example.lifestyleapplication.ui.retrofit.quotesRetrofit
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +25,9 @@ import java.util.*
 class QuotesFragment : Fragment() {
     private lateinit var binding: FragmentQuotesBinding
     private lateinit var quotes: quotesInterface
+    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +72,31 @@ class QuotesFragment : Fragment() {
         binding.author.startAnimation(animation)
         binding.imgQ.startAnimation(animation)
         binding.txtIntroQuote.startAnimation(animation)
+
+        setUsername()
         return binding.root
+    }
+
+    private fun setUsername() {
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
+        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    binding.userNameQuote.text = "Hello " + snapshot.child("username").value.toString()
+                }
+                else{
+                    Toast.makeText(activity, "No data", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
+            }
+
+        })
+
     }
 
 }

@@ -145,7 +145,7 @@ class ProfileFragment : Fragment() {
         } else {
 
             firebaseDatabase = FirebaseDatabase.getInstance()
-            databaseReference = firebaseDatabase.reference.child("users").push()
+            databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
             val userAdd: user = user()
             userAdd.username = username
             userAdd.email = firebaseAuth.currentUser.email.toString()

@@ -35,9 +35,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment2_to_dailyVersesFragment)
         }
         binding.devotionals.setOnClickListener {
-
+            findNavController().navigate(R.id.action_homeFragment2_to_devotionalsFragment)
         }
         binding.mealPlan.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_mealPlanFragment)
 
         }
         binding.bookClub.setOnClickListener {
@@ -48,6 +49,7 @@ class HomeFragment : Fragment() {
 
         }
         binding.naturalRemedies.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment2_to_remediesIllness)
 
         }
         binding.poems.setOnClickListener {

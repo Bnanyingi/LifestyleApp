@@ -30,8 +30,8 @@ class LoginFragment : Fragment() {
 
         //Login
         binding.loginBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
-            //authenticateUser()
+            //findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
+            authenticateUser()
         }
 
         //navigate to signup

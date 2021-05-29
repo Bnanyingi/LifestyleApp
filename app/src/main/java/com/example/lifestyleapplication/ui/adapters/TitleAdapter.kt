@@ -45,7 +45,9 @@ open class TitleAdapter(val context: Context): RecyclerView.Adapter<RecyclerView
     fun getData(newList: List<titles>, author: String){
         for (i in newList){
             list.add(i)
+            notifyDataSetChanged()
         }
+        notifyDataSetChanged()
         auth = author
     }
 }

@@ -32,6 +32,8 @@ open class LinesAdapter(val context: Context): RecyclerView.Adapter<RecyclerView
     fun addAll(lines: List<String>){
         for (i in lines){
             list.add(i)
+            notifyDataSetChanged()
         }
+        notifyDataSetChanged()
     }
 }

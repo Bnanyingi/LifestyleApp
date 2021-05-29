@@ -1,33 +1,37 @@
 package com.example.lifestyleapplication.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lifestyleapplication.R
+import com.example.lifestyleapplication.databinding.FragmentDevotionalsBinding
+import com.example.lifestyleapplication.ui.adapters.DevotionalsAdapter
+import com.example.lifestyleapplication.ui.interfaces.devotionalTopicsInterface
+import com.example.lifestyleapplication.ui.models.allDevotionalTopics
+import com.example.lifestyleapplication.ui.models.devotionalTopics
+import com.example.lifestyleapplication.ui.models.devotions
+import com.example.lifestyleapplication.ui.retrofit.devotionalTopicsRetrofit
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DevotionalsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DevotionalsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var binding: FragmentDevotionalsBinding
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var devotionalsAdapter: DevotionalsAdapter
+
+    private lateinit var devotionalTopics: devotionalTopicsInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -35,26 +39,47 @@ class DevotionalsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_devotionals, container, false)
+        binding = FragmentDevotionalsBinding.inflate(inflater, container, false)
+        binding.imgBackDevotionals.setOnClickListener {
+            findNavController().navigate(R.id.action_devotionalsFragment_to_homeFragment2)
+        }
+
+        val activity = activity as Context
+        devotionalsAdapter = DevotionalsAdapter(activity)
+        linearLayoutManager = LinearLayoutManager(activity)
+        binding.recyclerDevotionals.adapter = devotionalsAdapter
+        binding.recyclerDevotionals.layoutManager = linearLayoutManager
+        binding.progressDevTopics.visibility = View.VISIBLE
+        binding.linearDevTopics.visibility = View.GONE
+
+        devotionalTopics = devotionalTopicsRetrofit.getRetrofit().create(devotionalTopicsInterface::class.java)
+        val call: Call<allDevotionalTopics> = devotionalTopics.getTopics()
+        call.enqueue(object: Callback<allDevotionalTopics>{
+            override fun onResponse(
+                call: Call<allDevotionalTopics>,
+                response: Response<allDevotionalTopics>
+            ) {
+                if (response.isSuccessful){
+                    binding.progressDevTopics.visibility = View.GONE
+                    binding.linearDevTopics.visibility = View.VISIBLE
+                    setData(response.body())
+                }
+
+            }
+
+            override fun onFailure(call: Call<allDevotionalTopics>, t: Throwable) {
+                Toast.makeText(activity, t.message.toString(), Toast.LENGTH_LONG).show()
+                binding.progressDevTopics.visibility = View.VISIBLE
+                binding.linearDevTopics.visibility = View.GONE
+            }
+
+        })
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DevotionalsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DevotionalsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun setData(body: allDevotionalTopics?) {
+        devotionalsAdapter.addAll(body!!.data)
+
     }
+
 }

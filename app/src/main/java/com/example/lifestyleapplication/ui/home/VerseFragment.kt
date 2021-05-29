@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
 import com.example.lifestyleapplication.R
 import com.example.lifestyleapplication.databinding.FragmentVerseBinding
+import com.example.lifestyleapplication.ui.models.verse
 
 class VerseFragment : Fragment() {
     private lateinit var binding: FragmentVerseBinding
@@ -31,6 +32,20 @@ class VerseFragment : Fragment() {
             findNavController().navigate(R.id.action_verseFragment_to_dailyVersesFragment)
         }
         binding.txtIntroVerse.startAnimation(animation)
+
+        binding.progressVerse.visibility = View.VISIBLE
+        binding.linearVerse.visibility = View.GONE
+
+        val v = arguments?.getParcelable<verse>("VERSE")!!
+
+        if (v != null){
+            binding.progressVerse.visibility = View.GONE
+            binding.linearVerse.visibility = View.VISIBLE
+
+            binding.chapter.text = v.chapter
+            binding.verse.text = v.verse
+        }
+
         return binding.root
     }
 }

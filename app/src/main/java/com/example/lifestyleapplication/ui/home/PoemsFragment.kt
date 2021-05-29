@@ -17,6 +17,8 @@ import com.example.lifestyleapplication.ui.adapters.authorAdapter
 import com.example.lifestyleapplication.ui.interfaces.authorInterface
 import com.example.lifestyleapplication.ui.models.author
 import com.example.lifestyleapplication.ui.retrofit.authorRetrofit
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +28,10 @@ class PoemsFragment : Fragment() {
     private lateinit var authorAdapter: authorAdapter
     private lateinit var author: authorInterface
     private lateinit var linearLayoutManager: LinearLayoutManager
+
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firebaseDatabase: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +76,34 @@ class PoemsFragment : Fragment() {
             }
 
         })
+        setUsername()
         return binding.root
     }
 
     private fun sendData(body: author?) {
         authorAdapter.getData(body!!.author)
+    }
+
+    private fun setUsername() {
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
+        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    binding.userNameAuthor.text = "Hello " + snapshot.child("username").value.toString()
+                }
+                else{
+                    Toast.makeText(activity, "No data", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
+            }
+
+        })
+
     }
 
 }

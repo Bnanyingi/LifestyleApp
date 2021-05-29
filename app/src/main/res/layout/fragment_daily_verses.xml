@@ -29,7 +29,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
+            <ProgressBar
+                android:id="@+id/progressVerses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
             <LinearLayout
+                android:id="@+id/linVerse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -41,7 +49,6 @@
                     android:id="@+id/txtIntro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lumbert, How are you feeling today?"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="45sp"
@@ -59,7 +66,7 @@
                         android:id="@+id/radioHappy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Happy"
+                        android:hint="Thankful"
                         android:textColorHint="@color/white"
                         android:buttonTint="@color/white"
                         />
@@ -67,7 +74,7 @@
                         android:id="@+id/radioSad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Sad"
+                        android:hint="Stressed"
                         android:textColorHint="@color/white"
                         android:buttonTint="@color/white"
                         />
@@ -75,7 +82,15 @@
                         android:id="@+id/radioNervous"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Nervous"
+                        android:hint="Skeptical"
+                        android:textColorHint="@color/white"
+                        android:buttonTint="@color/white"
+                        />
+                    <RadioButton
+                        android:id="@+id/radioFarFromGed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Far From God"
                         android:textColorHint="@color/white"
                         android:buttonTint="@color/white"
                         />

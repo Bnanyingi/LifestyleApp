@@ -8,4 +8,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_account">Have no account? <u>Please sign up</u></string>
     <string name="have_account">Have account? <u>Sign in</u></string>
+    <string name="nonvegan">Non-Vegan Meal Plan</string>
+    <string name="fullvegan">Full Vegan Meal Plan</string>
+    <string name="lactovegeterian">Lacto-Vegetarian Meal Plan</string>
+    <string name="ovovegetarian">Ovo-Vegetarian Meal Plan</string>
+    <string name="lactoovovegetarian">Lacto-Ovo Vegetarian Meal Plan</string>
+    <string name="pescatarian">Pescatarian Meal Plan</string>
+    <string name="tea">teas with ingredients like licorice and slippery elm have throat-coating properties that help reduce irritation.</string>
 </resources>
