@@ -319,12 +319,6 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_mealPlanCategoriesFragment_to_customizedMealPlanFragment"
-            app:destination="@id/customizedMealPlanFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:popUpTo="@id/mealPlanCategoriesFragment" />
-        <action
             android:id="@+id/action_mealPlanCategoriesFragment_to_intermittentMealPlanFragment"
             app:destination="@id/intermittentMealPlanFragment"
             app:enterAnim="@anim/fragment_close_enter"
@@ -337,8 +331,14 @@
             app:exitAnim="@anim/fragment_close_exit"
             app:popUpTo="@id/mealPlanCategoriesFragment" />
         <action
-            android:id="@+id/action_mealPlanCategoriesFragment_to_specialMealPlanFragment"
-            app:destination="@id/specialMealPlanFragment"
+            android:id="@+id/action_mealPlanCategoriesFragment_to_healthConditionFragment"
+            app:destination="@id/healthConditionFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_enter"
+            app:popUpTo="@id/mealPlanCategoriesFragment" />
+        <action
+            android:id="@+id/action_mealPlanCategoriesFragment_to_userAgeFragment"
+            app:destination="@id/userAgeFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popUpTo="@id/mealPlanCategoriesFragment" />
@@ -347,13 +347,7 @@
         android:id="@+id/customizedMealPlanFragment"
         android:name="com.example.lifestyleapplication.ui.home.CustomizedMealPlanFragment"
         android:label="fragment_customized_meal_plan"
-        tools:layout="@layout/fragment_customized_meal_plan" >
-        <action
-            android:id="@+id/action_customizedMealPlanFragment_to_mealPlanCategoriesFragment"
-            app:destination="@id/mealPlanCategoriesFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit" />
-    </fragment>
+        tools:layout="@layout/fragment_customized_meal_plan" />
     <fragment
         android:id="@+id/intermittentMealPlanFragment"
         android:name="com.example.lifestyleapplication.ui.home.IntermittentMealPlanFragment"
@@ -364,6 +358,12 @@
             app:destination="@id/mealPlanCategoriesFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_intermittentMealPlanFragment_to_fragmentFastingDays"
+            app:destination="@id/fragmentFastingDays"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/intermittentMealPlanFragment" />
     </fragment>
     <fragment
         android:id="@+id/recommendedMealPlanFragment"
@@ -383,17 +383,6 @@
             app:popUpTo="@id/recommendedMealPlanFragment" />
     </fragment>
     <fragment
-        android:id="@+id/specialMealPlanFragment"
-        android:name="com.example.lifestyleapplication.ui.home.SpecialMealPlanFragment"
-        android:label="fragment_special_meal_plan"
-        tools:layout="@layout/fragment_special_meal_plan" >
-        <action
-            android:id="@+id/action_specialMealPlanFragment_to_mealPlanCategoriesFragment"
-            app:destination="@id/mealPlanCategoriesFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit" />
-    </fragment>
-    <fragment
         android:id="@+id/selectedDayFragment"
         android:name="com.example.lifestyleapplication.ui.home.SelectedDayFragment"
         android:label="fragment_selected_day"
@@ -401,6 +390,350 @@
         <action
             android:id="@+id/action_selectedDayFragment_to_recommendedMealPlanFragment"
             app:destination="@id/recommendedMealPlanFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_selectedDayFragment_to_viewSelectedMealDurationFragment"
+            app:destination="@id/viewSelectedMealDurationFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/selectedDayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewSelectedMealDurationFragment"
+        android:name="com.example.lifestyleapplication.ui.home.ViewSelectedMealDurationFragment"
+        android:label="fragment_view_selected_meal_duration"
+        tools:layout="@layout/fragment_view_selected_meal_duration" >
+        <action
+            android:id="@+id/action_viewSelectedMealDurationFragment_to_selectedDayFragment"
+            app:destination="@id/selectedDayFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/healthConditionFragment"
+        android:name="com.example.lifestyleapplication.ui.home.HealthConditionFragment"
+        android:label="fragment_health_condition"
+        tools:layout="@layout/fragment_health_condition" >
+        <action
+            android:id="@+id/action_healthConditionFragment_to_mealPlanCategoriesFragment"
+            app:destination="@id/mealPlanCategoriesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_healthConditionFragment_to_mealPlanDaysFragment"
+            app:destination="@id/mealPlanDaysFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/healthConditionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealPlanDaysFragment"
+        android:name="com.example.lifestyleapplication.ui.home.MealPlanDaysFragment"
+        android:label="fragment_meal_plan_days"
+        tools:layout="@layout/fragment_meal_plan_days" >
+        <action
+            android:id="@+id/action_mealPlanDaysFragment_to_healthConditionFragment"
+            app:destination="@id/healthConditionFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_mealPlanDaysFragment_to_mealDurationFragment"
+            app:destination="@id/mealDurationFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/mealPlanDaysFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDurationFragment"
+        android:name="com.example.lifestyleapplication.ui.home.MealDurationFragment"
+        android:label="fragment_meal_duration"
+        tools:layout="@layout/fragment_meal_duration" >
+        <action
+            android:id="@+id/action_mealDurationFragment_to_mealPlanDaysFragment"
+            app:destination="@id/mealPlanDaysFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_mealDurationFragment_to_fragmentSpecialDays"
+            app:destination="@id/fragmentSpecialDays"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/mealDurationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFastingDays"
+        android:name="com.example.lifestyleapplication.ui.intermittentmealplan.FragmentFastingDays"
+        android:label="fragment_fasting_days"
+        tools:layout="@layout/fragment_fasting_days" >
+        <action
+            android:id="@+id/action_fragmentFastingDays_to_mealPlanCategoriesFragment"
+            app:destination="@id/mealPlanCategoriesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentFastingDays_to_intermittentMealPlanFragment"
+            app:destination="@id/intermittentMealPlanFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentFastingDays_to_fragmentSelectedDayDurations"
+            app:destination="@id/fragmentSelectedDayDurations"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/fragmentFastingDays" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSpecialDays"
+        android:name="com.example.lifestyleapplication.ui.specialdiet.FragmentSpecialDays"
+        android:label="fragment_special_days"
+        tools:layout="@layout/fragment_special_days" >
+        <action
+            android:id="@+id/action_fragmentSpecialDays_to_fragmentSpecialDurations"
+            app:destination="@id/fragmentSpecialDurations"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/fragmentSpecialDays" />
+        <action
+            android:id="@+id/action_fragmentSpecialDays_to_mealDurationFragment"
+            app:destination="@id/mealDurationFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSpecialDurations"
+        android:name="com.example.lifestyleapplication.ui.specialdiet.FragmentSpecialDurations"
+        android:label="fragment_special_durations"
+        tools:layout="@layout/fragment_special_durations" >
+        <action
+            android:id="@+id/action_fragmentSpecialDurations_to_fragmentSpecialMeal"
+            app:destination="@id/fragmentSpecialMeal"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/fragmentSpecialDurations" />
+        <action
+            android:id="@+id/action_fragmentSpecialDurations_to_fragmentSpecialDays"
+            app:destination="@id/fragmentSpecialDays"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSpecialMeal"
+        android:name="com.example.lifestyleapplication.ui.specialdiet.FragmentSpecialMeal"
+        android:label="fragment_special_meal"
+        tools:layout="@layout/fragment_special_meal" >
+        <action
+            android:id="@+id/action_fragmentSpecialMeal_to_fragmentSpecialDurations"
+            app:destination="@id/fragmentSpecialDurations"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSelectedDayDurations"
+        android:name="com.example.lifestyleapplication.ui.intermittentmealplan.FragmentSelectedDayDurations"
+        android:label="fragment_selected_day_durations"
+        tools:layout="@layout/fragment_selected_day_durations" >
+        <action
+            android:id="@+id/action_fragmentSelectedDayDurations_to_fragmentIntermittentMeal"
+            app:destination="@id/fragmentIntermittentMeal"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/fragmentSelectedDayDurations" />
+        <action
+            android:id="@+id/action_fragmentSelectedDayDurations_to_fragmentFastingDays"
+            app:destination="@id/fragmentFastingDays"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentIntermittentMeal"
+        android:name="com.example.lifestyleapplication.ui.intermittentmealplan.FragmentIntermittentMeal"
+        android:label="fragment_intermittent_meal"
+        tools:layout="@layout/fragment_intermittent_meal" >
+        <action
+            android:id="@+id/action_fragmentIntermittentMeal_to_fragmentSelectedDayDurations"
+            app:destination="@id/fragmentSelectedDayDurations"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/userAgeFragment"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.UserAgeFragment"
+        android:label="fragment_user_age"
+        tools:layout="@layout/fragment_user_age" >
+        <action
+            android:id="@+id/action_userAgeFragment_to_mealPlanCategoriesFragment"
+            app:destination="@id/mealPlanCategoriesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_userAgeFragment_to_userGenderFragment"
+            app:destination="@id/userGenderFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/userAgeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userGenderFragment"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.UserGenderFragment"
+        android:label="fragment_user_gender"
+        tools:layout="@layout/fragment_user_gender" >
+        <action
+            android:id="@+id/action_userGenderFragment_to_userAgeFragment"
+            app:destination="@id/userAgeFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_userGenderFragment_to_userCurrentWeightFragment"
+            app:destination="@id/userCurrentWeightFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/userGenderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userCurrentWeightFragment"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.UserCurrentWeightFragment"
+        android:label="fragment_user_current_weight"
+        tools:layout="@layout/fragment_user_current_weight" >
+        <action
+            android:id="@+id/action_userCurrentWeightFragment_to_userGenderFragment"
+            app:destination="@id/userGenderFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_userCurrentWeightFragment_to_userHeightFragment"
+            app:destination="@id/userHeightFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/userCurrentWeightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userHeightFragment"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.UserHeightFragment"
+        android:label="fragment_user_height"
+        tools:layout="@layout/fragment_user_height" >
+        <action
+            android:id="@+id/action_userHeightFragment_to_userCurrentWeightFragment"
+            app:destination="@id/userCurrentWeightFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_userHeightFragment_to_userBodyTypeFragment"
+            app:destination="@id/userBodyTypeFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/userHeightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userBodyTypeFragment"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.UserBodyTypeFragment"
+        android:label="fragment_user_body_type"
+        tools:layout="@layout/fragment_user_body_type" >
+        <action
+            android:id="@+id/action_userBodyTypeFragment_to_userHeightFragment"
+            app:destination="@id/userHeightFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_userBodyTypeFragment_to_userBodyGoalsFragment"
+            app:destination="@id/userBodyGoalsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/userBodyTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userBodyGoalsFragment"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.UserBodyGoalsFragment"
+        android:label="fragment_user_body_goals"
+        tools:layout="@layout/fragment_user_body_goals" >
+        <action
+            android:id="@+id/action_userBodyGoalsFragment_to_userBodyTypeFragment"
+            app:destination="@id/userBodyTypeFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_userBodyGoalsFragment_to_userMealDurationsFragment"
+            app:destination="@id/userMealDurationsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/userBodyGoalsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userMealDurationsFragment"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.UserMealDurationsFragment"
+        android:label="fragment_user_meal_durations"
+        tools:layout="@layout/fragment_user_meal_durations" >
+        <action
+            android:id="@+id/action_userMealDurationsFragment_to_userBodyGoalsFragment"
+            app:destination="@id/userBodyGoalsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_userMealDurationsFragment_to_userDaysFragment"
+            app:destination="@id/userDaysFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/userMealDurationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDaysFragment"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.UserDaysFragment"
+        android:label="fragment_user_days"
+        tools:layout="@layout/fragment_user_days" >
+        <action
+            android:id="@+id/action_userDaysFragment_to_userMealDurationsFragment"
+            app:destination="@id/userMealDurationsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_userDaysFragment_to_fragmentViewUserDays"
+            app:destination="@id/fragmentViewUserDays"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/userDaysFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentViewUserDays"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.FragmentViewUserDays"
+        android:label="fragment_view_user_days"
+        tools:layout="@layout/fragment_view_user_days" >
+        <action
+            android:id="@+id/action_fragmentViewUserDays_to_userDaysFragment"
+            app:destination="@id/userDaysFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentViewUserDays_to_fragmentViewUserDuration"
+            app:destination="@id/fragmentViewUserDuration"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/fragmentViewUserDays" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentViewUserDuration"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.FragmentViewUserDuration"
+        android:label="fragment_view_user_duration"
+        tools:layout="@layout/fragment_view_user_duration" >
+        <action
+            android:id="@+id/action_fragmentViewUserDuration_to_fragmentViewUserDays"
+            app:destination="@id/fragmentViewUserDays"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentViewUserDuration_to_fragmentViewUserMeal"
+            app:destination="@id/fragmentViewUserMeal"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/fragmentViewUserDuration" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentViewUserMeal"
+        android:name="com.example.lifestyleapplication.ui.customisedmealplan.FragmentViewUserMeal"
+        android:label="fragment_view_user_meal"
+        tools:layout="@layout/fragment_view_user_meal" >
+        <action
+            android:id="@+id/action_fragmentViewUserMeal_to_fragmentViewUserDuration"
+            app:destination="@id/fragmentViewUserDuration"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
     </fragment>

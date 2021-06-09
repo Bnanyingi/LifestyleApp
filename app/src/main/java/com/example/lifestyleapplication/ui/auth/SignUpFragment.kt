@@ -1,5 +1,7 @@
 package com.example.lifestyleapplication.ui.auth
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
@@ -11,14 +13,23 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.lifestyleapplication.R
 import com.example.lifestyleapplication.databinding.FragmentSignUpBinding
+import com.example.lifestyleapplication.ui.interfaces.SignUpInterface
+import com.example.lifestyleapplication.ui.interfaces.generalinterface
+import com.example.lifestyleapplication.ui.models.allRegister
+import com.example.lifestyleapplication.ui.retrofit.RegisterRetrofit
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpBinding
-    private lateinit var auth: FirebaseAuth
+    private lateinit var signUpInterface: SignUpInterface
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var general: generalinterface
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +37,6 @@ class SignUpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
-
-        auth = FirebaseAuth.getInstance()
 
         binding.registerBtn.setOnClickListener {
             registerUser()
@@ -53,15 +62,24 @@ class SignUpFragment : Fragment() {
                 binding.emailInputLayout
             )
         ) {
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity(), OnCompleteListener {
-                    if (it.isSuccessful) {
-                        Toast.makeText(context, "Successfully Registered", Toast.LENGTH_LONG).show()
-                        findNavController().navigate(R.id.action_signUpFragment_to_profileFragment)
-                    }else{
-                        Toast.makeText(context, "Registration failed!", Toast.LENGTH_LONG).show()
+            signUpInterface = RegisterRetrofit.getRetrofit().create(SignUpInterface::class.java)
+            val call: Call<allRegister> = signUpInterface.register(username, email, password)
+            call.enqueue(object: Callback<allRegister>{
+                override fun onResponse(call: Call<allRegister>, response: Response<allRegister>) {
+                    if (response.isSuccessful){
+                        val id = response.body()!!.data[0].id
+                        val us = response.body()!!.data[0].username
+                        val em = response.body()!!.data[0].email
+
+                        general.sendUser(id!!, us!!, em!!)
                     }
-                })
+                }
+
+                override fun onFailure(call: Call<allRegister>, t: Throwable) {
+                    Toast.makeText(activity, t.message.toString(), Toast.LENGTH_LONG).show()
+                }
+
+            })
         }
     }
 
@@ -87,5 +105,10 @@ class SignUpFragment : Fragment() {
             textInputLayout.error = null
             true
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        general = context as generalinterface
     }
 }

@@ -109,7 +109,6 @@ class ViewDevotionsFragment : Fragment() {
             mediaPlayer.setDataSource(constants.DEVOTIONALS + audioUrl)
             mediaPlayer.prepare()
             mediaPlayer.start()
-
         }
         catch (e: IOException){
 
@@ -118,11 +117,11 @@ class ViewDevotionsFragment : Fragment() {
 
     private fun getData(body: allDevotions?) {
         binding.txtAuthor.text = body!!.data[0].author
-        binding.txtContent.text = body.data[0].body
+        binding.txtContent.text = body.data[0].paragraph1
+        binding.txtContent1.text = body.data[0].paragraph2
+        binding.txtContent2.text = body.data[0].paragraph3
         binding.txtReading.text = body.data[0].bibleReading
         binding.txtVerse.text = body.data[0].verseOne
         audioUrl = body.data[0].audioUrl.toString()
-
     }
-
 }

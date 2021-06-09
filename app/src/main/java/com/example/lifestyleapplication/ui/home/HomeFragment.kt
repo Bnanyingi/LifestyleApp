@@ -1,10 +1,10 @@
 package com.example.lifestyleapplication.ui.home
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.navigation.NavController
@@ -16,6 +16,7 @@ import com.example.lifestyleapplication.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +59,16 @@ class HomeFragment : Fragment() {
         }
         binding.workOutPLan.setOnClickListener {
 
+        }
+
+        binding.signOut.setOnClickListener {
+            sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+            if (sharedPreferences.getString("EMAIL", "") != null){
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.clear()
+                editor.apply()
+                findNavController().navigate(R.id.action_homeFragment2_to_loginFragment)
+            }
         }
         return binding.root
     }

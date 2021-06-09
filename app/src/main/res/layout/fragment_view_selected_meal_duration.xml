@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".ui.home.ViewSelectedMealDurationFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple_700"
+        >
+        <ImageView
+            android:id="@+id/imgBackSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:tint="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:id="@+id/txtMealSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breakfast"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="17sp"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/linearDet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:id="@+id/imgSelected"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:src="@drawable/breakfast"
+                android:scaleType="fitXY"
+                />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="-30dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meal"
+                        android:textColor="@color/purple_700"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:id="@+id/mealSelected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/meal"
+                        android:textColor="@color/dark_green"
+                        android:paddingTop="8dp"
+                        android:textSize="14sp"
+                        android:paddingBottom="5dp"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Body Type"
+                        android:textColor="@color/purple_700"
+                        android:textSize="17sp"
+                        android:layout_marginTop="7dp"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:id="@+id/typeSelected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Endomorph"
+                        android:textColor="@color/dark_green"
+                        android:paddingTop="8dp"
+                        android:textSize="13sp"
+                        android:paddingBottom="5dp"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Benefits to the body"
+                        android:textColor="@color/purple_700"
+                        android:textSize="17sp"
+                        android:layout_marginTop="7dp"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:id="@+id/benefitSelected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="To maintain weight"
+                        android:textColor="@color/dark_green"
+                        android:paddingTop="8dp"
+                        android:textSize="13sp"
+                        android:paddingBottom="5dp"
+
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressDet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

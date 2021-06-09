@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso
 open class SelectedMealDurationAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var list: ArrayList<selectedday> = ArrayList()
     private lateinit var general: generalinterface
+    private var mealPlan: String? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.selected__meal_duration_item, parent, false))
     }
@@ -29,7 +30,7 @@ open class SelectedMealDurationAdapter(val context: Context): RecyclerView.Adapt
         picasso.downloader(OkHttp3Downloader(context))
         picasso.build().load(constants.DEVOTIONALS + list[position].mealimage).into(myViewHolder.img)
         myViewHolder.rel.setOnClickListener {
-            general.getPlanDetails(list[position].meal!!)
+            general.getPlanDetails(list[position], mealPlan!!)
         }
     }
 
@@ -48,7 +49,8 @@ open class SelectedMealDurationAdapter(val context: Context): RecyclerView.Adapt
         val rel: RelativeLayout = view.findViewById(R.id.relDuration)
     }
 
-    fun getDuration(lst: ArrayList<selectedday>){
+    fun getDuration(lst: ArrayList<selectedday>, plan: String){
+        mealPlan = plan
         for (i in lst){
             list.add(i)
             notifyDataSetChanged()

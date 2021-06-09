@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "589492526574",
-    "project_id": "lifestyleapp-d556d",
-    "storage_bucket": "lifestyleapp-d556d.appspot.com"
+    "project_number": "733490907198",
+    "project_id": "lifestyle-c0c57",
+    "storage_bucket": "lifestyle-c0c57.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:589492526574:android:744907e0c7f1e2b4fec2ff",
+        "mobilesdk_app_id": "1:733490907198:android:605c321dd20a13dfd9a96f",
         "android_client_info": {
           "package_name": "com.example.lifestyleapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "589492526574-5q7u53h7de7tpoqesnn92fvb9akg7anc.apps.googleusercontent.com",
+          "client_id": "733490907198-3vcbo07jp6qgp6boab4cqrd9fg2b9d1p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.lifestyleapplication",
-            "certificate_hash": "cd417f766e4ce72eef1760138f7942334ad3444b"
+            "certificate_hash": "b569df60b147ee37b0a95793b0829f99c17f5c0c"
           }
         },
         {
-          "client_id": "589492526574-vhjsd1jtl1t7o5ig7fg66ugd66a7pd5n.apps.googleusercontent.com",
+          "client_id": "733490907198-pnnhtgdm9ucstovdtj1e0jtup9t0lo1r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA8UuQjWvDmBiAFYnM4GcTPW7HLUTGWir0"
+          "current_key": "AIzaSyD6zcXTALAim4kvHLU42Z2xoVnu7dY9D5w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "589492526574-vhjsd1jtl1t7o5ig7fg66ugd66a7pd5n.apps.googleusercontent.com",
+              "client_id": "733490907198-pnnhtgdm9ucstovdtj1e0jtup9t0lo1r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -27,7 +27,7 @@ class MealPlanFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentMealPlanBinding.inflate(inflater, container, false)
-        var animation = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
+        val animation = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
         binding.imgBackPlans.setOnClickListener {
             findNavController().navigate(R.id.action_mealPlanFragment_to_homeFragment2)
         }

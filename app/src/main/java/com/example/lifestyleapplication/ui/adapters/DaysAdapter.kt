@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso
 open class DaysAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var list: ArrayList<day> = ArrayList()
     private lateinit var general: generalinterface
+    private var mealPLan: String? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.day_item, parent, false))
     }
@@ -30,7 +31,7 @@ open class DaysAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.
         picasso.downloader(OkHttp3Downloader(context))
         picasso.build().load(constants.DEVOTIONALS + list[position].url).into(myViewHolder.img)
         myViewHolder.rel.setOnClickListener {
-            general.goToDayMealPlans(list[position].day!!);
+            general.goToDayMealPlans(list[position].day!!, mealPLan!!);
         }
     }
 
@@ -49,7 +50,8 @@ open class DaysAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.
         val rel: RelativeLayout = view.findViewById(R.id.relDayClick)
     }
 
-    fun getDays(lst: ArrayList<day>){
+    fun getDays(lst: ArrayList<day>, plan: String){
+        mealPLan = plan
         for (i in lst){
             list.add(i)
             notifyDataSetChanged()

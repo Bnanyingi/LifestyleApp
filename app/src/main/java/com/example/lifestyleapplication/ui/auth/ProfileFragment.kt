@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.auth
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -13,21 +14,26 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.lifestyleapplication.R
 import com.example.lifestyleapplication.databinding.FragmentProfileBinding
+import com.example.lifestyleapplication.ui.interfaces.ProfileInterface
+import com.example.lifestyleapplication.ui.models.allUser
 import com.example.lifestyleapplication.ui.models.user
+import com.example.lifestyleapplication.ui.retrofit.ProfileRetrofit
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
+    private lateinit var profileInterface: ProfileInterface
+    private lateinit var sharedPreferences: SharedPreferences
     private var gender: String = ""
     private var typeOfDiet = ""
     private var mealTaken = ""
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +46,6 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        firebaseAuth = FirebaseAuth.getInstance()
         val diets = resources.getStringArray(R.array.data_types)
         val meals = resources.getStringArray(R.array.meals)
         val activity = activity as Context
@@ -85,7 +90,8 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnProfile.setOnClickListener {
-            if (firebaseAuth.currentUser != null){
+            val id = arguments?.getInt("ID")
+            if (id != null){
                 saveDetails()
             }
             else{
@@ -101,7 +107,7 @@ class ProfileFragment : Fragment() {
         val email = binding.emailProfile.text.toString().trim()
         val age = binding.ageProfile.text.toString().trim()
         val city = binding.cityProfile.text.toString().trim()
-        var state = binding.stateProfile.text.toString().trim()
+        val state = binding.stateProfile.text.toString().trim()
         val country = binding.countryProfile.text.toString().trim()
         val healthCondition = binding.healthConditionProfile.text.toString().trim()
         val disability = binding.disabilityProfile.text.toString().trim()
@@ -122,7 +128,7 @@ class ProfileFragment : Fragment() {
 
         if (TextUtils.isEmpty(username)) {
             checkDetails(binding.usernameProfileInputLayout)
-        } else if (TextUtils.isEmpty(email) || firebaseAuth.currentUser.email.toString() != email) {
+        } else if (TextUtils.isEmpty(email) || arguments?.getString("EMAIL").toString() != email) {
             checkDetails(binding.emailProfileInputLayout)
         } else if (TextUtils.isEmpty(age)) {
             checkDetails(binding.ageProfileInputLayout)
@@ -144,36 +150,48 @@ class ProfileFragment : Fragment() {
             Toast.makeText(activity, "Gender Required", Toast.LENGTH_LONG).show()
         } else {
 
-            firebaseDatabase = FirebaseDatabase.getInstance()
-            databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
-            val userAdd: user = user()
-            userAdd.username = username
-            userAdd.email = firebaseAuth.currentUser.email.toString()
-            userAdd.age = age
-            userAdd.city = city
-            userAdd.country = country
-            userAdd.diet = typeOfDiet
-            userAdd.disability = disability
-            userAdd.healthcondition = healthCondition
-            userAdd.gender = gender
-            userAdd.meal = mealTaken
-            userAdd.state = state
-            userAdd.timesyoueat = eatTimes
-            databaseReference.setValue(userAdd)
+            profileInterface = ProfileRetrofit.getRetrofit().create(ProfileInterface::class.java)
+            val call: Call<allUser> = profileInterface.register(
+                arguments?.getInt("ID")!!,
+                username,
+                arguments?.getString("EMAIL").toString(),
+                age,
+                city,
+                state,
+                country,
+                typeOfDiet,
+                healthCondition,
+                disability,
+                eatTimes,
+                mealTaken,
+                gender
+            )
+            call.enqueue(object: Callback<allUser>{
+                override fun onResponse(call: Call<allUser>, response: Response<allUser>) {
+                    if (response.isSuccessful){
+                        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+                        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                        editor.putString("ID", id.toString())
+                        editor.putString("USERNAME", username)
+                        editor.putString("EMAIL", email)
+                        editor.putString("AGE", age)
+                        editor.putString("CITY", city)
+                        editor.putString("STATE", state)
+                        editor.putString("COUNTRY", country)
+                        editor.putString("DIET", typeOfDiet)
+                        editor.putString("CONDITION", healthCondition)
+                        editor.putString("DISABILITY", disability)
+                        editor.putString("EATTIMES", eatTimes)
+                        editor.putString("MEALTAKEN", mealTaken)
+                        editor.putString("GENDER", gender)
+                        editor.apply()
 
-            databaseReference.addValueEventListener(object: ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
                         findNavController().navigate(R.id.action_profileFragment_to_homeFragment2)
-                        Toast.makeText(activity, "Successfully added", Toast.LENGTH_LONG).show()
-                    }
-                    else{
-                        Toast.makeText(activity, "Not Added", Toast.LENGTH_LONG).show()
                     }
                 }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
+                override fun onFailure(call: Call<allUser>, t: Throwable) {
+                    Toast.makeText(activity, t.message.toString(), Toast.LENGTH_LONG).show()
                 }
 
             })

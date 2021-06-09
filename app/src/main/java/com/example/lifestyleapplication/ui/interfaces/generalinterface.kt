@@ -1,11 +1,9 @@
 package com.example.lifestyleapplication.ui.interfaces
 
-import com.example.lifestyleapplication.ui.models.author
-import com.example.lifestyleapplication.ui.models.devotionalTopics
-import com.example.lifestyleapplication.ui.models.poem
-import com.example.lifestyleapplication.ui.models.verse
+import com.example.lifestyleapplication.ui.models.*
 
 interface generalinterface {
+    fun sendUser(id: Int, username: String, email: String)
     fun sendAuthor(author: String)
     fun sendTitle(title: String?, auth: String)
     fun sendAllTitles(poem: poem)
@@ -15,6 +13,31 @@ interface generalinterface {
     fun getSelectedDevotionalTitle(title: String)
     fun getIllness(illness: String)
     fun goToCategories(name: String)
-    fun goToDayMealPlans(day: String)
-    fun getPlanDetails(duration: String)
+    fun goToMealDaysCustomized(name: String)
+    fun goToMealDaysRecommended(name: String)
+    fun goToMealDaysSpecial(name: String)
+    fun goToMealDaysIntermittent(name: String)
+    fun goToDayMealPlans(day: String, plan: String)
+    fun goToFastingDayMealPlans(day: String, plan: String)
+    fun goToIntermittentDayMealsPlan(day: String, plan: String, brk: String, luch: String, dinn: String, dest: String)
+    fun goToSpecialDayMealsPlan(day: String, plan: String, brk: String, luch: String, dinn: String, dest: String, condition: String)
+    fun getPlanDetails(duration: selectedday, plan: String)
+    fun getSpecialPlanDetails(duration: selectedday, plan: String, condition: String)
+    fun getIntermittentPlanDetails(duration: selectedday, plan: String)
+    fun selectedMood(mood: String)
+    fun sendCondition(condition: String, pln: String)
+    fun sendDays(dy: String, pln: String, condition: String)
+    fun sendDurations(brk: String, lnc: String, din: String, dst: String, dy: String, pln: String, condition: String)
+    fun sendFastingDays(days: String, plan: String)
+    //custom
+    fun sendCustomAge(age: String, plan: String)
+    fun sendCustomGender(gender: String, plan: String, age: String)
+    fun sendCustomWeight(weight: String, gender: String, plan: String, age: String)
+    fun sendCustomHeight(height: String, weight: String, gender: String, plan: String, age: String)
+    fun sendCustomBodyType(type: String, height: String, weight: String, gender: String, plan: String, age: String)
+    fun sendCustomBodyGoals(lose: String, gain: String, maintain: String, type: String, height: String, weight: String, gender: String, plan: String, age: String)
+    fun sendCustomMealDuration(brk: String, lnc: String, din: String, dst: String, lose: String, gain: String, maintain: String, type: String, height: String, weight: String, gender: String, plan: String, age: String)
+    fun sendCustomMealDays(dys: String, brk: String, lnc: String, din: String, dst: String, lose: String, gain: String, maintain: String, type: String, height: String, weight: String, gender: String, plan: String, age: String)
+    fun sendToCustomDays(day: String, plan: String, brk: String, luch: String, dinn: String, dest: String)
+    fun getCustomPlanDetails(duration: selectedday, plan: String)
 }

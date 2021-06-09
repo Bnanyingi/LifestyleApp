@@ -26,6 +26,16 @@
                 android:layout_centerHorizontal="true"
                 android:textSize="20sp"
                 />
+            <ImageView
+                android:id="@+id/signOut"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_login_24"
+                app:tint="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="13dp"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"

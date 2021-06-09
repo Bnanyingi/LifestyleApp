@@ -63,19 +63,18 @@ class SelectedDayFragment : Fragment() {
                 if (response.isSuccessful){
                     binding.progressSelected.visibility = View.GONE
                     binding.recyclerSelectedDay.visibility = View.VISIBLE
-                    showDurations(response.body()!!.data)
+                    showDurations(response.body()!!.data, arguments?.getString("PLAN").toString())
                 }
             }
 
             override fun onFailure(call: Call<AllSelectedDays>, t: Throwable) {
                 Toast.makeText(activity, t.message.toString(), Toast.LENGTH_LONG).show()
             }
-
         })
     }
 
-    private fun showDurations(data: ArrayList<selectedday>) {
-        selectedMealDurationAdapter.getDuration(data)
+    private fun showDurations(data: ArrayList<selectedday>, plan: String) {
+        selectedMealDurationAdapter.getDuration(data, plan)
         binding.recyclerSelectedDay.adapter = selectedMealDurationAdapter
         binding.recyclerSelectedDay.layoutManager = linearLayoutManager
     }

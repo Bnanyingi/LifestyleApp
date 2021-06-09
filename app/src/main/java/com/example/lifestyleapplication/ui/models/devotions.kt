@@ -22,9 +22,15 @@ class devotions(
     @SerializedName("VERSETWO")
     @Expose
     var verseTwo: String? = null,
-    @SerializedName("BODY")
+    @SerializedName("PARAGRAPH1")
     @Expose
-    var body: String? = null,
+    var paragraph1: String? = null,
+    @SerializedName("PARAGRAPH2")
+    @Expose
+    var paragraph2: String? = null,
+    @SerializedName("PARAGRAPH3")
+    @Expose
+    var paragraph3: String? = null,
     @SerializedName("AUDIOURL")
     @Expose
     var audioUrl: String? = null

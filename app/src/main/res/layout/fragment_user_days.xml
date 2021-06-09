@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/purple_700"
+    tools:context=".ui.customisedmealplan.UserDaysFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        >
+        <ImageView
+            android:id="@+id/imgBackDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:tint="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:layout_centerVertical="true"
+            >
+            <TextView
+                android:id="@+id/introDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You want a meal plan for how many days Lumbert?"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                />
+            <EditText
+                android:id="@+id/editDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/white"
+                android:hint="Enter Days"
+                android:textColorHint="@android:color/darker_gray"
+                android:layout_marginTop="10dp"
+                android:textSize="25sp"
+                android:inputType="number"
+                />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

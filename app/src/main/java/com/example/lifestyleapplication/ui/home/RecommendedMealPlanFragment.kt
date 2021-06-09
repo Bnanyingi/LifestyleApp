@@ -41,7 +41,7 @@ class RecommendedMealPlanFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentRecommendedMealPlanBinding.inflate(inflater, container, false)
         binding.imgBackRec.setOnClickListener {
             findNavController().navigate(R.id.action_recommendedMealPlanFragment_to_mealPlanCategoriesFragment)
@@ -63,21 +63,19 @@ class RecommendedMealPlanFragment : Fragment() {
                 if (response.isSuccessful){
                     binding.progressRec.visibility = View.GONE
                     binding.recyclerDays.visibility = View.VISIBLE
-                    setData(response.body()!!.data)
+                    setData(response.body()!!.data, arguments?.getString("MEALPLAN").toString())
                 }
             }
 
             override fun onFailure(call: Call<allDays>, t: Throwable) {
                 Toast.makeText(activity, t.message.toString(), Toast.LENGTH_LONG).show()
             }
-
         })
     }
 
-    private fun setData(data: ArrayList<day>) {
-        daysAdapter.getDays(data)
+    private fun setData(data: ArrayList<day>, plan: String) {
+        daysAdapter.getDays(data, plan)
         binding.recyclerDays.layoutManager = linearLayoutManager
         binding.recyclerDays.adapter = daysAdapter
     }
-
 }

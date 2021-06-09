@@ -48,114 +48,26 @@ class DailyVersesFragment : Fragment() {
         //firebase
         firebaseDatabase = FirebaseDatabase.getInstance()
 
-        binding.progressVerses.visibility = View.VISIBLE
-        binding.linVerse.visibility = View.GONE
+        binding.progressVerses.visibility = View.GONE
+        //binding.linVerse.visibility = View.GONE
 
         binding.relNext.setOnClickListener {
             val id = binding.radioGroupMood.checkedRadioButtonId
             when(id){
                 R.id.radioHappy -> {
-                    databaseReference = firebaseDatabase.reference.child("bibleverses").child("thankful")
-                    databaseReference.addValueEventListener(object: ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            if (snapshot.exists()){
-                                val list: ArrayList<verse> = ArrayList()
-                                for(dataSnapshot in snapshot.children){
-                                    val verse = verse()
-                                    verse.verse = dataSnapshot.child("verse").value.toString()
-                                    verse.chapter = dataSnapshot.child("chapter").value.toString()
-
-                                    list.add(verse)
-                                }
-                                val random = Random().nextInt(list.size - 1)
-                                Toast.makeText(activity, "found", Toast.LENGTH_LONG).show()
-                                general.sendVerse(list[1])
-                            }
-                            else{
-                                Toast.makeText(activity, "No Data", Toast.LENGTH_LONG).show()
-                            }
-
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            Toast.makeText(activity, "Not Successful", Toast.LENGTH_LONG).show()
-                        }
-
-                    })
+                    general.selectedMood("Thankful")
                 }
                 R.id.radioSad -> {
-                    databaseReference = firebaseDatabase.reference.child("bibleverses").child("stressed")
-                    databaseReference.addValueEventListener(object: ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val list: ArrayList<verse> = ArrayList()
-                            for(dataSnapshot in snapshot.children){
-                                val verse = verse()
-                                verse.verse = dataSnapshot.child("verse").value.toString()
-                                verse.chapter = dataSnapshot.child("chapter").value.toString()
-
-                                list.add(verse)
-                            }
-                            val random = Random().nextInt(list.size - 1)
-                            general.sendVerse(list[0])
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            Toast.makeText(activity, "Not Successful", Toast.LENGTH_LONG).show()
-                        }
-
-                    })
+                    general.selectedMood("Stressed")
                 }
-                R.id.radioNervous -> {
-                    databaseReference = firebaseDatabase.reference.child("biblical").child("skeptical")
-                    databaseReference.addValueEventListener(object: ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val list: ArrayList<verse> = ArrayList()
-                            for(dataSnapshot in snapshot.children){
-                                val verse = verse()
-                                verse.verse = dataSnapshot.child("verse").value.toString()
-                                verse.chapter = dataSnapshot.child("chapter").value.toString()
-
-                                list.add(verse)
-                            }
-                            val random = Random().nextInt(list.size - 1)
-                            general.sendVerse(list[0])
-
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            Toast.makeText(activity, "Not Successful", Toast.LENGTH_LONG).show()
-                        }
-
-                    })
+                R.id.radioSkeptical -> {
+                    general.selectedMood("Skeptical")
                 }
                 R.id.radioFarFromGed -> {
-                    val list: ArrayList<verse> = ArrayList()
-                    databaseReference = firebaseDatabase.reference.child("bibleverses").child("farFromGod")
-                    databaseReference.addValueEventListener(object: ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            if (snapshot.exists()){
-                                for(dataSnapshot in snapshot.children){
-                                    val verse = verse()
-                                    verse.verse = dataSnapshot.child("verse").value.toString()
-                                    verse.chapter = dataSnapshot.child("chapter").value.toString()
-
-                                    list.add(verse)
-                                }
-                                val random = Random().nextInt(list.size - 1)
-                                general.sendVerse(list[0])
-
-                            }
-                            else{
-                                Toast.makeText(activity, "No Data", Toast.LENGTH_LONG).show()
-                            }
-
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            Toast.makeText(activity, "error", Toast.LENGTH_LONG).show()
-                        }
-
-                    })
+                    general.selectedMood("Far From God")
+                }
+                R.id.radioDoubting -> {
+                    general.selectedMood("Doubting")
                 }
                 else -> {
 
@@ -174,8 +86,8 @@ class DailyVersesFragment : Fragment() {
         databaseReference.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
-                    binding.progressVerses.visibility = View.GONE
-                    binding.linVerse.visibility = View.VISIBLE
+                    //binding.progressVerses.visibility = View.GONE
+                    //binding.linVerse.visibility = View.VISIBLE
                     binding.txtIntro.text = snapshot.child("username").value.toString() + ", How are you feeling today?"
                 }
                 else{
