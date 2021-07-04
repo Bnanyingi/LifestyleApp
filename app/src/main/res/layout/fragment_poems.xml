@@ -44,7 +44,6 @@
                         android:id="@+id/userNameAuthor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hello Lumbert"
                         android:textColor="@android:color/holo_green_light"
                         android:textSize="20sp"
                         />

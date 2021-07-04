@@ -409,6 +409,16 @@
             app:destination="@id/selectedDayFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_viewSelectedMealDurationFragment_to_mealPlanCategoriesFragment"
+            app:destination="@id/mealPlanCategoriesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_viewSelectedMealDurationFragment_to_mealPlanFragment"
+            app:destination="@id/mealPlanFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/healthConditionFragment"
@@ -527,6 +537,16 @@
             app:destination="@id/fragmentSpecialDurations"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentSpecialMeal_to_mealPlanCategoriesFragment"
+            app:destination="@id/mealPlanCategoriesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentSpecialMeal_to_mealPlanFragment"
+            app:destination="@id/mealPlanFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSelectedDayDurations"
@@ -553,6 +573,16 @@
         <action
             android:id="@+id/action_fragmentIntermittentMeal_to_fragmentSelectedDayDurations"
             app:destination="@id/fragmentSelectedDayDurations"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentIntermittentMeal_to_mealPlanCategoriesFragment"
+            app:destination="@id/mealPlanCategoriesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentIntermittentMeal_to_mealPlanFragment"
+            app:destination="@id/mealPlanFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
@@ -734,6 +764,16 @@
         <action
             android:id="@+id/action_fragmentViewUserMeal_to_fragmentViewUserDuration"
             app:destination="@id/fragmentViewUserDuration"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentViewUserMeal_to_mealPlanCategoriesFragment"
+            app:destination="@id/mealPlanCategoriesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_fragmentViewUserMeal_to_mealPlanFragment"
+            app:destination="@id/mealPlanFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
     </fragment>

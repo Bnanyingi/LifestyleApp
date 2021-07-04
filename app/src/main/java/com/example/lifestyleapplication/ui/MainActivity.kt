@@ -126,6 +126,10 @@ class MainActivity : AppCompatActivity(), generalinterface {
         navController.navigate(R.id.action_mealPlanCategoriesFragment_to_intermittentMealPlanFragment, bundle)
     }
 
+    override fun goToMealDaysUserPlans(name: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun goToDayMealPlans(day: String, plan: String) {
         val bundle = Bundle()
         bundle.putString("DAY", day)
@@ -166,7 +170,7 @@ class MainActivity : AppCompatActivity(), generalinterface {
         val bundle = Bundle()
         bundle.putString("DAY", day)
         bundle.putString("PLAN", plan)
-        bundle.putString("BREAK", brk)
+        bundle.putString("BREAKFAST", brk)
         bundle.putString("LUNCH", luch)
         bundle.putString("DINNER", dinn)
         bundle.putString("DESSERT", dest)
@@ -406,7 +410,7 @@ class MainActivity : AppCompatActivity(), generalinterface {
         val bundle = Bundle()
         bundle.putString("DAY", day)
         bundle.putString("PLAN", plan)
-        bundle.putString("BREAK", brk)
+        bundle.putString("BREAKFAST", brk)
         bundle.putString("LUNCH", luch)
         bundle.putString("DINNER", dinn)
         bundle.putString("DESSERT", dest)

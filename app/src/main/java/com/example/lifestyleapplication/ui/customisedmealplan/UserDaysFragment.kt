@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.customisedmealplan
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -17,9 +18,7 @@ import com.google.firebase.database.*
 
 class UserDaysFragment : Fragment() {
     private lateinit var binding: FragmentUserDaysBinding
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var general: generalinterface
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,24 +62,11 @@ class UserDaysFragment : Fragment() {
     }
 
     private fun setUsername() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
-        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    binding.introDays.text = "Which of the meal durations would you want " + snapshot.child("username").value.toString() + "?"
-                }
-                else{
-                    Toast.makeText(activity, "No data", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
-            }
-
-        })
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.introDays.text = "You want a meal plan for how many days " + username.toString() + "?"
+        }
 
     }
 

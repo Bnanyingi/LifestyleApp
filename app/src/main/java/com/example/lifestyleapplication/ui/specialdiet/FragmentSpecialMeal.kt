@@ -45,19 +45,19 @@ class FragmentSpecialMeal : Fragment() {
         binding.progressDet.visibility = View.VISIBLE
         binding.linearDet.visibility = View.GONE
         binding.imgBackSelected.setOnClickListener {
-            findNavController().navigate(R.id.action_viewSelectedMealDurationFragment_to_selectedDayFragment)
+            findNavController().navigate(R.id.action_fragmentSpecialMeal_to_mealPlanFragment)
         }
         val select: selectedday = arguments?.getParcelable("SELECTEDDAY")!!
         binding.txtMealSelected.text = select.meal
         val plan: String = arguments?.getString("PLAN").toString()
 
-        getData(plan, select.meal, select.day, arguments?.getString("CONDITION").toString())
+        getData(plan, select.meal, select.day, arguments?.getString("CONDITION").toString(), select.meal.toString().toLowerCase())
         return binding.root
     }
 
-    private fun getData(plan: String, meal: String?, day: String?, condition: String) {
+    private fun getData(plan: String, meal: String?, day: String?, condition: String, dur: String?) {
         viewMealInterface = SpecialMealRetrofit.getRetrofit().create(SpecialMealInterface::class.java)
-        val call: Call<allMealDetails> = viewMealInterface.getData(plan, meal!!, day!!, condition)
+        val call: Call<allMealDetails> = viewMealInterface.getData(plan, meal!!, day!!, condition, dur!!)
         call.enqueue(object: Callback<allMealDetails> {
             override fun onResponse(
                 call: Call<allMealDetails>,
@@ -79,11 +79,18 @@ class FragmentSpecialMeal : Fragment() {
 
     private fun showData(data: ArrayList<mealdetails>) {
         val activity = activity as Context
-        val picasso = Picasso.Builder(activity)
-        picasso.downloader(OkHttp3Downloader(context))
-        picasso.build().load(constants.DEVOTIONALS + data[0].image).into(binding.imgSelected)
-        binding.mealSelected.text = data[0].name
-        binding.typeSelected.text = data[0].bodyType
-        binding.benefitSelected.text = data[0].bodyGoals
+        if (data.size > 0){
+            val picasso = Picasso.Builder(activity)
+            picasso.downloader(OkHttp3Downloader(context))
+            picasso.build().load(constants.DEVOTIONALS + data[0].image).into(binding.imgSelected)
+            binding.mealSelected.text = data[0].name
+            binding.typeSelected.text = data[0].bodyType
+            binding.benefitSelected.text = data[0].bodyGoals
+        }
+
+        else{
+            Toast.makeText(activity, "No Data", Toast.LENGTH_LONG).show()
+        }
+
     }
 }

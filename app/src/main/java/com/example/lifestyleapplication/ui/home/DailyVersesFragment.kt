@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.home
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,11 +24,8 @@ import kotlin.collections.ArrayList
 
 class DailyVersesFragment : Fragment() {
     private lateinit var binding: FragmentDailyVersesBinding
-
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var databaseReference: DatabaseReference
     private lateinit var general: generalinterface
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +42,6 @@ class DailyVersesFragment : Fragment() {
         binding.backVerse.setOnClickListener {
             findNavController().navigate(R.id.action_dailyVersesFragment_to_homeFragment2)
         }
-
-        //firebase
-        firebaseDatabase = FirebaseDatabase.getInstance()
 
         binding.progressVerses.visibility = View.GONE
         //binding.linVerse.visibility = View.GONE
@@ -80,29 +75,11 @@ class DailyVersesFragment : Fragment() {
     }
 
     private fun setUsername() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
-        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    //binding.progressVerses.visibility = View.GONE
-                    //binding.linVerse.visibility = View.VISIBLE
-                    binding.txtIntro.text = snapshot.child("username").value.toString() + ", How are you feeling today?"
-                }
-                else{
-                    Toast.makeText(activity, "No data", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                binding.progressVerses.visibility = View.VISIBLE
-                binding.linVerse.visibility = View.GONE
-                Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
-            }
-
-        })
-
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.txtIntro.text = username.toString() + ", How are you feeling today?"
+        }
     }
 
     override fun onAttach(context: Context) {

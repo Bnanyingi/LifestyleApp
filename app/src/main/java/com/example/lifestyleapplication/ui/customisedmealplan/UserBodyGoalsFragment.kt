@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.customisedmealplan
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,10 +18,8 @@ import com.google.firebase.database.*
 
 class UserBodyGoalsFragment : Fragment() {
     private lateinit var binding: FragmentUserBodyGoalsBinding
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
     private lateinit var general: generalinterface
+    private lateinit var sharedPreferences: SharedPreferences
 
     private var gain: String? = ""
     private var lose: String? = ""
@@ -65,24 +64,11 @@ class UserBodyGoalsFragment : Fragment() {
     }
 
     private fun setUsername() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
-        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    binding.introBodyGoals.text = "What are your body goals " + snapshot.child("username").value.toString() + "?"
-                }
-                else{
-                    Toast.makeText(activity, "No data", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
-            }
-
-        })
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.introBodyGoals.text = "What are your body goals " + username.toString() + "?"
+        }
 
     }
 

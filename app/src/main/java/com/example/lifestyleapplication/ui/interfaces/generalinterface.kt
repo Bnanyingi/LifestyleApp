@@ -17,6 +17,7 @@ interface generalinterface {
     fun goToMealDaysRecommended(name: String)
     fun goToMealDaysSpecial(name: String)
     fun goToMealDaysIntermittent(name: String)
+    fun goToMealDaysUserPlans(name: String)
     fun goToDayMealPlans(day: String, plan: String)
     fun goToFastingDayMealPlans(day: String, plan: String)
     fun goToIntermittentDayMealsPlan(day: String, plan: String, brk: String, luch: String, dinn: String, dest: String)

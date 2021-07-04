@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.lifestyleapplication.R
 import com.example.lifestyleapplication.databinding.FragmentViewUserMealBinding
@@ -38,7 +39,7 @@ class FragmentViewUserMeal : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentViewUserMealBinding.inflate(inflater, container, false)
         binding.imgBackSelected.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentViewUserMeal_to_fragmentViewUserDuration)
+            findNavController().navigate(R.id.action_fragmentViewUserMeal_to_mealPlanFragment)
         }
         val animation = AnimationUtils.loadAnimation(activity, android.R.anim.fade_out)
         binding.cardDet.startAnimation(animation)
@@ -49,25 +50,28 @@ class FragmentViewUserMeal : Fragment() {
         binding.txtMealSelected.text = select.meal
         val plan: String = arguments?.getString("PLAN").toString()
 
-        getData(plan, select.meal, select.day, arguments?.getString("CONDITION").toString())
-        return binding.root
+        getData(plan, select.meal, select.day, "normal", select.meal.toString().toLowerCase())
         return binding.root
     }
 
-    private fun getData(plan: String, meal: String?, day: String?, toString: String) {
+    private fun getData(plan: String, meal: String?, day: String?, cond: String, dur: String?) {
         customisedViewMealInterface = CustomisedViewMealRetrofit.getRetrofit().create(CustomisedViewMealInterface::class.java)
-        val call: Call<allMealDetails> = customisedViewMealInterface.getData(plan, meal!!, day!!)
+        val call: Call<allMealDetails> = customisedViewMealInterface.getData(plan, meal!!, day!!, dur!!)
         call.enqueue(object: Callback<allMealDetails>{
             override fun onResponse(
                 call: Call<allMealDetails>,
                 response: Response<allMealDetails>
             ) {
                 if (response.isSuccessful){
+                    binding.progressDet.visibility = View.GONE
+                    binding.linearDet.visibility = View.VISIBLE
                     showData(response.body()!!.data)
                 }
             }
 
             override fun onFailure(call: Call<allMealDetails>, t: Throwable) {
+                binding.progressDet.visibility = View.VISIBLE
+                binding.linearDet.visibility = View.GONE
 
             }
 
@@ -75,12 +79,17 @@ class FragmentViewUserMeal : Fragment() {
     }
 
     private fun showData(data: ArrayList<mealdetails>) {
-        val activity = activity as Context
-        val picasso = Picasso.Builder(activity)
-        picasso.downloader(OkHttp3Downloader(context))
-        picasso.build().load(constants.DEVOTIONALS + data[0].image).into(binding.imgSelected)
-        binding.mealSelected.text = data[0].name
-        binding.typeSelected.text = data[0].bodyType
-        binding.benefitSelected.text = data[0].bodyGoals
+        if (data.size > 0){
+            val activity = activity as Context
+            val picasso = Picasso.Builder(activity)
+            picasso.downloader(OkHttp3Downloader(context))
+            picasso.build().load(constants.DEVOTIONALS + data[0].image).into(binding.imgSelected)
+            binding.mealSelected.text = data[0].name
+            binding.typeSelected.text = data[0].bodyType
+            binding.benefitSelected.text = data[0].bodyGoals
+        }
+        else{
+            //Toast.makeText(activity, "No Data", Toast.LENGTH_LONG).show()
+        }
     }
 }

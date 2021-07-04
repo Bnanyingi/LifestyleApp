@@ -1,5 +1,7 @@
 package com.example.lifestyleapplication.ui.home
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -29,10 +31,7 @@ import kotlin.collections.ArrayList
 class VerseFragment : Fragment() {
     private lateinit var binding: FragmentVerseBinding
     private lateinit var moodVersesInterface: MoodVersesInterface
-
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,24 +94,10 @@ class VerseFragment : Fragment() {
     }
 
     private fun setUsername() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
-        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    binding.txtIntroVerse.text = snapshot.child("username").value.toString() + " , this is your Bible Verse of the day"
-                }
-                else{
-                    Toast.makeText(activity, "No data", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
-            }
-
-        })
-
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.txtIntroVerse.text = username.toString() + ", this is your Bible Verse of the day"
+        }
     }
 }

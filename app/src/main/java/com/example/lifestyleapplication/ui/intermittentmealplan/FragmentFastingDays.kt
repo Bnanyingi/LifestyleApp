@@ -74,16 +74,17 @@ class FragmentFastingDays : Fragment() {
     private fun setData(data: ArrayList<day>, plan: String, dys: String) {
         val lst: ArrayList<day> = ArrayList()
         if (data.size >= dys.toInt()){
-            for (i in 0..dys.toInt()){
+            for (i in 0 until dys.toInt()){
                 val d = day()
                 d.id = data[i].id
                 d.day = data[i].day
                 d.url = data[i].url
                 lst.add(d)
             }
-            daysAdapter.getDays(data, plan)
+            daysAdapter.getDays(lst, plan)
             binding.recyclerDays.layoutManager = linearLayoutManager
             binding.recyclerDays.adapter = daysAdapter
+
         }
 
     }

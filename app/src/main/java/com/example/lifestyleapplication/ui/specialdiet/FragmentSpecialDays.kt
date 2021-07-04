@@ -42,7 +42,7 @@ class FragmentSpecialDays : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSpecialDaysBinding.inflate(inflater, container, false)
         binding.imgBackRec.setOnClickListener {
-            findNavController().navigate(R.id.action_recommendedMealPlanFragment_to_mealPlanCategoriesFragment)
+            findNavController().navigate(R.id.action_fragmentSpecialDays_to_mealDurationFragment)
         }
         val activity = activity as Context
         linearLayoutManager = LinearLayoutManager(activity)
@@ -81,7 +81,7 @@ class FragmentSpecialDays : Fragment() {
     private fun setData(data: ArrayList<day>, plan: String, brk: String, lnc: String, din: String, dst: String, condition: String, dy: String) {
         val lst: ArrayList<day> = ArrayList()
         if (data.size >= dy.toInt()){
-            for (i in 0..dy.toInt()){
+            for (i in 0 until dy.toInt()){
                 val d = day()
                 d.id = data[i].id
                 d.day = data[i].day
@@ -91,6 +91,7 @@ class FragmentSpecialDays : Fragment() {
             daysAdapter.getDays(lst, plan, brk, lnc, din, dst, condition)
             binding.recyclerDays.layoutManager = linearLayoutManager
             binding.recyclerDays.adapter = daysAdapter
+
         }
     }
 }

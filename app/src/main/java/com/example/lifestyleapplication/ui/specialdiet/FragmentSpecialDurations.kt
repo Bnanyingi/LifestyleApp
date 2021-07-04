@@ -41,7 +41,7 @@ class FragmentSpecialDurations : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSpecialDurationsBinding.inflate(inflater, container, false)
         binding.selectedBack.setOnClickListener {
-            findNavController().navigate(R.id.action_selectedDayFragment_to_recommendedMealPlanFragment)
+            findNavController().navigate(R.id.action_fragmentSpecialDurations_to_fragmentSpecialDays)
         }
         binding.progressSelected.visibility = View.VISIBLE
         binding.recyclerSelectedDay.visibility = View.GONE
@@ -55,7 +55,6 @@ class FragmentSpecialDurations : Fragment() {
     }
 
     private fun getSelectedDuration() {
-        val pln: String = arguments?.getString("MEALPLAN").toString()
         val condition: String = arguments?.getString("CONDITION").toString()
         val day: String = arguments?.getString("DAY").toString()
         dayMealDurationInterface = SpecialDurationRetrofit.getRetrofit().create(SpecialDurationInterface::class.java)
@@ -84,10 +83,10 @@ class FragmentSpecialDurations : Fragment() {
         val din: String = arguments?.getString("DINNER").toString()
         val dst: String = arguments?.getString("DESSERT").toString()
         val mls: ArrayList<String> = ArrayList()
-        mls[0] = brk
-        mls[1] = lnc
-        mls[2] = din
-        mls[3] = dst
+        mls.add(brk)
+        mls.add(lnc)
+        mls.add(din)
+        mls.add(dst)
 
         val lst: ArrayList<selectedday> = ArrayList()
 
@@ -98,6 +97,7 @@ class FragmentSpecialDurations : Fragment() {
                 }
             }
         }
+
         selectedMealDurationAdapter.getDuration(lst, plan, condition)
         binding.recyclerSelectedDay.adapter = selectedMealDurationAdapter
         binding.recyclerSelectedDay.layoutManager = linearLayoutManager

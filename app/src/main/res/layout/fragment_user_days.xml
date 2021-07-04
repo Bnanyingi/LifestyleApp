@@ -37,7 +37,6 @@
                 android:id="@+id/introDays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You want a meal plan for how many days Lumbert?"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="25sp"

@@ -10,6 +10,7 @@ interface CustomisedViewMealInterface {
     fun getData(
         @Query("mealplan") mealPlan: String,
         @Query("mealduration") mealDuration: String,
-        @Query("day") day: String
+        @Query("day") day: String,
+        @Query("duration") dur: String
     ): Call<allMealDetails>
 }

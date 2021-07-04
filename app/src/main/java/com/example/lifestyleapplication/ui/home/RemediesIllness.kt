@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.home
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -31,6 +32,7 @@ class RemediesIllness : Fragment() {
     private lateinit var illnessAdapter: IllnessAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var illnessInterface: IllnessInterface
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,11 +100,20 @@ class RemediesIllness : Fragment() {
                 general.getRemedy(ill)
             }
         }
+        setUsername()
         return binding.root
     }
 
     private fun getIllnesses(data: ArrayList<illness>) {
         illnessAdapter.addAll(data)
+    }
+
+    private fun setUsername() {
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.txtRemIntro.text = "Hi, " + username.toString()
+        }
     }
 
     override fun onAttach(context: Context) {

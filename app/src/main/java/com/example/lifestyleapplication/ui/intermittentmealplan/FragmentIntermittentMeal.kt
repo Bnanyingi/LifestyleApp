@@ -45,19 +45,19 @@ class FragmentIntermittentMeal : Fragment() {
         binding.progressDet.visibility = View.VISIBLE
         binding.linearDet.visibility = View.GONE
         binding.imgBackSelected.setOnClickListener {
-            findNavController().navigate(R.id.action_viewSelectedMealDurationFragment_to_selectedDayFragment)
+            findNavController().navigate(R.id.action_fragmentIntermittentMeal_to_mealPlanFragment)
         }
         val select: selectedday = arguments?.getParcelable("SELECTEDDAY")!!
         binding.txtMealSelected.text = select.meal
         val plan: String = arguments?.getString("PLAN").toString()
 
-        getData(plan, select.meal, select.day)
+        getData(plan, select.meal, select.day, select.meal.toString().toLowerCase())
 
         return binding.root
     }
-    private fun getData(plan: String, meal: String?, day: String?) {
+    private fun getData(plan: String, meal: String?, day: String?, dur: String?) {
         viewMealInterface = IntermittentMealRetrofit.getRetrofit().create(IntermittentMealInterface::class.java)
-        val call: Call<allMealDetails> = viewMealInterface.getData(plan, meal!!, day!!)
+        val call: Call<allMealDetails> = viewMealInterface.getData(plan, meal!!, day!!, dur!!)
         call.enqueue(object: Callback<allMealDetails> {
             override fun onResponse(
                 call: Call<allMealDetails>,

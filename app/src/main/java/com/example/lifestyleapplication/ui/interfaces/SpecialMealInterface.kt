@@ -11,6 +11,7 @@ interface SpecialMealInterface {
         @Query("mealplan") mealPlan: String,
         @Query("mealduration") mealDuration: String,
         @Query("day") day: String,
-        @Query("condition") condition: String
+        @Query("condition") condition: String,
+        @Query("duration") dur: String
     ): Call<allMealDetails>
 }

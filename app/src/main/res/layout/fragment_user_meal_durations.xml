@@ -37,7 +37,6 @@
                 android:id="@+id/introDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Which of the meal durations would you want Lumbert?"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="25sp"

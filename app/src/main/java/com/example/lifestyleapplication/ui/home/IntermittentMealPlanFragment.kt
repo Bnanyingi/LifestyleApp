@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.home
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.example.lifestyleapplication.ui.interfaces.generalinterface
 class IntermittentMealPlanFragment : Fragment() {
    private lateinit var binding: FragmentIntermittentMealPlanBinding
    private lateinit var general: generalinterface
+   private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,16 @@ class IntermittentMealPlanFragment : Fragment() {
                 general.sendFastingDays(dys, plan)
             }
         }
+        setUsername()
         return binding.root
+    }
+
+    private fun setUsername() {
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.introFasting.text = "Enter number of fasting days " + username.toString()
+        }
     }
 
     override fun onAttach(context: Context) {

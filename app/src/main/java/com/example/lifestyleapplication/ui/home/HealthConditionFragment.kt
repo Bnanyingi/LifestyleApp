@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.home
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lifestyleapplication.R
 import com.example.lifestyleapplication.databinding.FragmentHealthConditionBinding
@@ -24,12 +26,10 @@ import retrofit2.Response
 
 class HealthConditionFragment : Fragment() {
     private lateinit var binding: FragmentHealthConditionBinding
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var healthConditionAdapter: HealthConditionAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var healthConditionsInterface: HealthConditionsInterface
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +41,9 @@ class HealthConditionFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHealthConditionBinding.inflate(inflater, container, false)
+        binding.imgBackCond.setOnClickListener {
+            findNavController().navigate(R.id.action_healthConditionFragment_to_mealPlanCategoriesFragment)
+        }
         val activity  = activity as Context
         linearLayoutManager = LinearLayoutManager(activity)
         healthConditionAdapter = HealthConditionAdapter(activity)
@@ -72,7 +75,7 @@ class HealthConditionFragment : Fragment() {
 
     private fun showOPtions() {
         healthConditionsInterface = HealthConditionsRetrofit.getRetrofit().create(HealthConditionsInterface::class.java)
-        var call: Call<AllHealthConditions> = healthConditionsInterface.getConditions()
+        val call: Call<AllHealthConditions> = healthConditionsInterface.getConditions()
         call.enqueue(object: Callback<AllHealthConditions>{
             override fun onResponse(
                 call: Call<AllHealthConditions>,
@@ -82,9 +85,14 @@ class HealthConditionFragment : Fragment() {
                     binding.progressCondition.visibility = View.GONE
                     binding.linearCondition.visibility = View.VISIBLE
                     val plan = arguments?.getString("MEALPLAN").toString()
-                    healthConditionAdapter.addAll(response.body()!!.data, plan)
-                    binding.recyclerCondition.adapter = healthConditionAdapter
-                    binding.recyclerCondition.layoutManager = linearLayoutManager
+                    if (response.body()!!.data.size > 0){
+                        healthConditionAdapter.addAll(response.body()!!.data, plan)
+                        binding.recyclerCondition.adapter = healthConditionAdapter
+                        binding.recyclerCondition.layoutManager = linearLayoutManager
+                    }
+                    else{
+                        Toast.makeText(activity, "No Data", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
 
@@ -96,24 +104,11 @@ class HealthConditionFragment : Fragment() {
     }
 
     private fun setUsername() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
-        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    binding.txtConditionIntro.text = snapshot.child("username").value.toString() + ", enter Current Health Condition"
-                }
-                else{
-                    Toast.makeText(activity, "No data", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
-            }
-
-        })
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.txtConditionIntro.text = username.toString() + ", enter Current Health Condition"
+        }
 
     }
 }

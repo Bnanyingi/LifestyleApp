@@ -48,7 +48,6 @@
                     android:id="@+id/introDevotionals"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lumbert, which Bible topic would you want to study on today?"
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     />

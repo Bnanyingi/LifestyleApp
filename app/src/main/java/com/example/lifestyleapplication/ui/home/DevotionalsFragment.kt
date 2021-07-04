@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.home
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,6 +27,7 @@ class DevotionalsFragment : Fragment() {
     private lateinit var binding: FragmentDevotionalsBinding
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var devotionalsAdapter: DevotionalsAdapter
+    private lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var devotionalTopics: devotionalTopicsInterface
 
@@ -72,9 +74,17 @@ class DevotionalsFragment : Fragment() {
                 binding.progressDevTopics.visibility = View.VISIBLE
                 binding.linearDevTopics.visibility = View.GONE
             }
-
         })
+        setUsername()
         return binding.root
+    }
+
+    private fun setUsername() {
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.introDevotionals.text = username.toString() + ", which Bible topic would you want to study on today?"
+        }
     }
 
     private fun setData(body: allDevotionalTopics?) {

@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.home
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,10 +18,8 @@ import com.google.firebase.database.*
 
 class MealDurationFragment : Fragment() {
     private lateinit var binding: FragmentMealDurationBinding
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
     private lateinit var general: generalinterface
+    private lateinit var sharedPreferences: SharedPreferences
     private var brk: String? = ""
     private var lnch: String = ""
     private var dnr: String = ""
@@ -37,6 +36,9 @@ class MealDurationFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentMealDurationBinding.inflate(inflater, container, false)
+        binding.imgDurationBack.setOnClickListener {
+            findNavController().navigate(R.id.action_mealDurationFragment_to_mealPlanDaysFragment)
+        }
         binding.floatingDuration.setOnClickListener {
             if (binding.breakfast.isChecked){
                 brk = binding.breakfast.text.toString()
@@ -59,24 +61,11 @@ class MealDurationFragment : Fragment() {
     }
 
     private fun setUsername() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.reference.child("users").child(firebaseAuth.uid!!)
-        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    binding.introDuration.text = "You want a meal plan for how many days" + snapshot.child("username").value.toString() + "?"
-                }
-                else{
-                    Toast.makeText(activity, "No data", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity, error.message.toString(), Toast.LENGTH_LONG).show()
-            }
-
-        })
+        sharedPreferences = activity?.getSharedPreferences("USER", Context.MODE_PRIVATE)!!
+        val username = sharedPreferences.getString("USERNAME", "")
+        if (username != null){
+            binding.introDuration.text = "Which of the meal durations would you want " + username.toString() + "?"
+        }
 
     }
 

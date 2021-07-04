@@ -16,6 +16,7 @@ import com.example.lifestyleapplication.ui.interfaces.generalinterface
 import com.example.lifestyleapplication.ui.models.AllSelectedDays
 import com.example.lifestyleapplication.ui.models.selectedday
 import com.example.lifestyleapplication.ui.retrofit.CustomisedDurationRetrofit
+import com.google.firebase.database.core.Context
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,6 +38,8 @@ class FragmentViewUserDuration : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentViewUserDurationBinding.inflate(inflater, container, false)
+        val activity  = activity as android.content.Context
+        customisedDurationAdapter = CustomisedDurationAdapter(activity)
         binding.selectedBack.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentViewUserDuration_to_fragmentViewUserDays)
         }
@@ -66,14 +69,21 @@ class FragmentViewUserDuration : Fragment() {
     }
 
     private fun sendData(data: ArrayList<selectedday>) {
-        val brk: String = arguments?.getString("BREAKFAST").toString()
-        val lnc: String = arguments?.getString("LUNCH").toString()
-        val din: String = arguments?.getString("DINNER").toString()
-        val dst: String = arguments?.getString("DESSERT").toString()
-        val plan: String = arguments?.getString("PLAN").toString()
-        customisedDurationAdapter.getDuration(data, plan)
-        binding.recyclerSelectedDay.adapter = customisedDurationAdapter
-        binding.recyclerSelectedDay.layoutManager = LinearLayoutManager(activity)
+        if (data.size > 0){
+            val brk: String = arguments?.getString("BREAKFAST").toString()
+            val lnc: String = arguments?.getString("LUNCH").toString()
+            val din: String = arguments?.getString("DINNER").toString()
+            val dst: String = arguments?.getString("DESSERT").toString()
+            val plan: String = arguments?.getString("PLAN").toString()
+
+            customisedDurationAdapter.getDuration(data, plan)
+            binding.recyclerSelectedDay.adapter = customisedDurationAdapter
+            binding.recyclerSelectedDay.layoutManager = LinearLayoutManager(activity)
+        }
+        else{
+            //Toast.makeText(activity, "No Data", Toast.LENGTH_LONG).show()
+        }
+
     }
 
 
