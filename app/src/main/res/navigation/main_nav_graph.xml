@@ -69,6 +69,12 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popUpTo="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_workOutPlanFragment"
+            app:destination="@id/workOutPlanFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/homeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -774,6 +780,102 @@
         <action
             android:id="@+id/action_fragmentViewUserMeal_to_mealPlanFragment"
             app:destination="@id/mealPlanFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/workOutPlanFragment"
+        android:name="com.example.lifestyleapplication.ui.home.WorkOutPlanFragment"
+        android:label="fragment_work_out_plan"
+        tools:layout="@layout/fragment_work_out_plan" >
+        <action
+            android:id="@+id/action_workOutPlanFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_workOutPlanFragment_to_workOutPlanCategories"
+            app:destination="@id/workOutPlanCategories"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/workOutPlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workOutPlanCategories"
+        android:name="com.example.lifestyleapplication.ui.workoutplans.WorkOutPlanCategories"
+        android:label="fragment_work_out_plan_categories"
+        tools:layout="@layout/fragment_work_out_plan_categories" >
+        <action
+            android:id="@+id/action_workOutPlanCategories_to_workOutPlanFragment"
+            app:destination="@id/workOutPlanFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_workOutPlanCategories_to_workOutPlanDaysFragment"
+            app:destination="@id/workOutPlanDaysFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/workOutPlanCategories" />
+    </fragment>
+    <fragment
+        android:id="@+id/workOutPlanDaysFragment"
+        android:name="com.example.lifestyleapplication.ui.workoutplans.recommended.WorkOutPlanDaysFragment"
+        android:label="fragment_work_out_plan_days"
+        tools:layout="@layout/fragment_work_out_plan_days" >
+        <action
+            android:id="@+id/action_workOutPlanDaysFragment_to_workOutPlanCategories"
+            app:destination="@id/workOutPlanCategories"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_workOutPlanDaysFragment_to_workOutPlanNumberFragment"
+            app:destination="@id/workOutPlanNumberFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/workOutPlanDaysFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workOutPlanNumberFragment"
+        android:name="com.example.lifestyleapplication.ui.workoutplans.recommended.WorkOutPlanNumberFragment"
+        android:label="fragment_work_out_plan_number"
+        tools:layout="@layout/fragment_work_out_plan_number" >
+        <action
+            android:id="@+id/action_workOutPlanNumberFragment_to_workOutPlanDaysFragment"
+            app:destination="@id/workOutPlanDaysFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_workOutPlanNumberFragment_to_recommendedWorkOutPlanFragment"
+            app:destination="@id/recommendedWorkOutPlanFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/workOutPlanNumberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recommendedWorkOutPlanFragment"
+        android:name="com.example.lifestyleapplication.ui.workoutplans.recommended.RecommendedWorkOutPlanFragment"
+        android:label="fragment_recommended_work_out_plan"
+        tools:layout="@layout/fragment_recommended_work_out_plan" >
+        <action
+            android:id="@+id/action_recommendedWorkOutPlanFragment_to_workOutPlanNumberFragment"
+            app:destination="@id/workOutPlanNumberFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_recommendedWorkOutPlanFragment_to_viewRecommendedWorkOut"
+            app:destination="@id/viewRecommendedWorkOut"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/recommendedWorkOutPlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewRecommendedWorkOut"
+        android:name="com.example.lifestyleapplication.ui.workoutplans.recommended.ViewRecommendedWorkOut"
+        android:label="fragment_view_recommended_work_out"
+        tools:layout="@layout/fragment_view_recommended_work_out" >
+        <action
+            android:id="@+id/action_viewRecommendedWorkOut_to_recommendedWorkOutPlanFragment"
+            app:destination="@id/recommendedWorkOutPlanFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
     </fragment>

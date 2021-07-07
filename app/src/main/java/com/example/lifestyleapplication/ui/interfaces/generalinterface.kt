@@ -1,6 +1,7 @@
 package com.example.lifestyleapplication.ui.interfaces
 
 import com.example.lifestyleapplication.ui.models.*
+import com.example.lifestyleapplication.ui.workoutplans.model.workoutmodel
 
 interface generalinterface {
     fun sendUser(id: Int, username: String, email: String)
@@ -41,4 +42,9 @@ interface generalinterface {
     fun sendCustomMealDays(dys: String, brk: String, lnc: String, din: String, dst: String, lose: String, gain: String, maintain: String, type: String, height: String, weight: String, gender: String, plan: String, age: String)
     fun sendToCustomDays(day: String, plan: String, brk: String, luch: String, dinn: String, dest: String)
     fun getCustomPlanDetails(duration: selectedday, plan: String)
+    //workout
+    fun sendWorkOut(string: String)
+    fun sendDay(day: String)
+    fun sendWorkOutNumber(numb: String, img: String)
+    fun sendExercise(exercise: workoutmodel)
 }

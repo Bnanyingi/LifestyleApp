@@ -16,6 +16,7 @@ import com.example.lifestyleapplication.ui.interfaces.generalinterface
 import com.example.lifestyleapplication.ui.models.poem
 import com.example.lifestyleapplication.ui.models.selectedday
 import com.example.lifestyleapplication.ui.models.verse
+import com.example.lifestyleapplication.ui.workoutplans.model.workoutmodel
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity(), generalinterface {
@@ -422,5 +423,37 @@ class MainActivity : AppCompatActivity(), generalinterface {
         bundle.putParcelable("SELECTEDDAY", duration)
         bundle.putString("PLAN", plan)
         navController.navigate(R.id.action_fragmentViewUserDuration_to_fragmentViewUserMeal, bundle)
+    }
+
+    override fun sendWorkOut(string: String) {
+        val sharedPreferences: SharedPreferences = getSharedPreferences("WORKOUTTYPE", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString("TYPE", string)
+        editor.apply()
+        navController.navigate(R.id.action_workOutPlanFragment_to_workOutPlanCategories)
+    }
+
+    override fun sendDay(day: String) {
+        val sharedPreferences: SharedPreferences = getSharedPreferences("RECOMMENDED", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString("DAY", day)
+        editor.apply()
+        navController.navigate(R.id.action_workOutPlanDaysFragment_to_workOutPlanNumberFragment)
+    }
+
+    override fun sendWorkOutNumber(numb: String, img: String) {
+        val sharedPreferences: SharedPreferences = getSharedPreferences("RECOMMENDED", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString("WORKOUTNUMBER", numb)
+        editor.putString("WORKOUTIMAGE", img)
+        editor.apply()
+        navController.navigate(R.id.action_workOutPlanNumberFragment_to_recommendedWorkOutPlanFragment)
+    }
+
+    override fun sendExercise(exercise: workoutmodel) {
+        val bundle: Bundle = Bundle()
+        bundle.putParcelable("EXERCISE", exercise)
+        navController.navigate(R.id.action_recommendedWorkOutPlanFragment_to_viewRecommendedWorkOut, bundle)
+
     }
 }

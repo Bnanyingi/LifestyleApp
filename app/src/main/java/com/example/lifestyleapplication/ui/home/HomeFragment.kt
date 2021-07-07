@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
 
         }
         binding.workOutPLan.setOnClickListener {
-
+            findNavController().navigate(R.id.action_homeFragment2_to_workOutPlanFragment)
         }
 
         binding.signOut.setOnClickListener {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/cardSelectedNumber"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bench Press"
+            android:padding="15dp"
+            android:textColor="@color/purple_700"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_black"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
